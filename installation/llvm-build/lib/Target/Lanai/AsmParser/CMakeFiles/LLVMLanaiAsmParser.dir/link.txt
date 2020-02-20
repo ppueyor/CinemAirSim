@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../libLLVMLanaiAsmParser.a  CMakeFiles/LLVMLanaiAsmParser.dir/LanaiAsmParser.cpp.o
+/usr/bin/ranlib ../../../libLLVMLanaiAsmParser.a

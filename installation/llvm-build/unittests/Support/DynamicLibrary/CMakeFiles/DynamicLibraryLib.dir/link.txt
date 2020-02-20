@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/libDynamicLibraryLib.a  CMakeFiles/DynamicLibraryLib.dir/ExportedFuncs.cxx.o
+/usr/bin/ranlib ../../../lib/libDynamicLibraryLib.a

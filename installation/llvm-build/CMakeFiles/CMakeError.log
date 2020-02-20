@@ -1,0 +1,632 @@
+Determining if the include file malloc/malloc.h exists failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2f889/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2f889.dir/build.make CMakeFiles/cmTC_2f889.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2f889.dir/CheckIncludeFile.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_2f889.dir/CheckIncludeFile.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'malloc/malloc.h' file not found
+#include <malloc/malloc.h>
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+CMakeFiles/cmTC_2f889.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_2f889.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_2f889.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_2f889/fast' failed
+make: *** [cmTC_2f889/fast] Error 2
+
+
+Determining if the include file ndir.h exists failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a42ab/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a42ab.dir/build.make CMakeFiles/cmTC_a42ab.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a42ab.dir/CheckIncludeFile.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_a42ab.dir/CheckIncludeFile.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'ndir.h' file not found
+#include <ndir.h>
+         ^~~~~~~~
+1 error generated.
+CMakeFiles/cmTC_a42ab.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_a42ab.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_a42ab.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_a42ab/fast' failed
+make: *** [cmTC_a42ab/fast] Error 2
+
+
+Determining if the include file sys/ndir.h exists failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_ef1ec/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ef1ec.dir/build.make CMakeFiles/cmTC_ef1ec.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ef1ec.dir/CheckIncludeFile.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_ef1ec.dir/CheckIncludeFile.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'sys/ndir.h' file not found
+#include <sys/ndir.h>
+         ^~~~~~~~~~~~
+1 error generated.
+CMakeFiles/cmTC_ef1ec.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_ef1ec.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_ef1ec.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_ef1ec/fast' failed
+make: *** [cmTC_ef1ec/fast] Error 2
+
+
+Determining if the include file valgrind/valgrind.h exists failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6d520/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6d520.dir/build.make CMakeFiles/cmTC_6d520.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6d520.dir/CheckIncludeFile.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_6d520.dir/CheckIncludeFile.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'valgrind/valgrind.h' file not found
+#include <valgrind/valgrind.h>
+         ^~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+CMakeFiles/cmTC_6d520.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_6d520.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_6d520.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_6d520/fast' failed
+make: *** [cmTC_6d520/fast] Error 2
+
+
+Determining if the include file mach/mach.h exists failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d0f94/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d0f94.dir/build.make CMakeFiles/cmTC_d0f94.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d0f94.dir/CheckIncludeFile.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_d0f94.dir/CheckIncludeFile.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'mach/mach.h' file not found
+#include <mach/mach.h>
+         ^~~~~~~~~~~~~
+1 error generated.
+CMakeFiles/cmTC_d0f94.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_d0f94.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_d0f94.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_d0f94/fast' failed
+make: *** [cmTC_d0f94/fast] Error 2
+
+
+Determining if the include file histedit.h exists failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_06587/fast"
+/usr/bin/make -f CMakeFiles/cmTC_06587.dir/build.make CMakeFiles/cmTC_06587.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_06587.dir/CheckIncludeFile.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_06587.dir/CheckIncludeFile.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'histedit.h' file not found
+#include <histedit.h>
+         ^~~~~~~~~~~~
+1 error generated.
+CMakeFiles/cmTC_06587.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_06587.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_06587.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_06587/fast' failed
+make: *** [cmTC_06587/fast] Error 2
+
+
+Determining if the include file CrashReporterClient.h exists failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2ec41/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2ec41.dir/build.make CMakeFiles/cmTC_2ec41.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2ec41.dir/CheckIncludeFile.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_2ec41.dir/CheckIncludeFile.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'CrashReporterClient.h' file not found
+#include <CrashReporterClient.h>
+         ^~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+CMakeFiles/cmTC_2ec41.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_2ec41.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_2ec41.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_2ec41/fast' failed
+make: *** [cmTC_2ec41/fast] Error 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7c9c4/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7c9c4.dir/build.make CMakeFiles/cmTC_7c9c4.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7c9c4.dir/CheckSymbolExists.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_7c9c4.dir/CheckSymbolExists.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_7c9c4
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7c9c4.dir/link.txt --verbose=1
+/usr/bin/clang-5.0      CMakeFiles/cmTC_7c9c4.dir/CheckSymbolExists.c.o  -o cmTC_7c9c4 -lm 
+CMakeFiles/cmTC_7c9c4.dir/CheckSymbolExists.c.o: In function `main':
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:(.text+0x19): undefined reference to `pthread_create'
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+CMakeFiles/cmTC_7c9c4.dir/build.make:97: recipe for target 'cmTC_7c9c4' failed
+make[1]: *** [cmTC_7c9c4] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_7c9c4/fast' failed
+make: *** [cmTC_7c9c4/fast] Error 2
+
+File /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f5ade/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f5ade.dir/build.make CMakeFiles/cmTC_f5ade.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f5ade.dir/CheckFunctionExists.c.o
+/usr/bin/clang-5.0   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_f5ade.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_f5ade
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f5ade.dir/link.txt --verbose=1
+/usr/bin/clang-5.0  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_f5ade.dir/CheckFunctionExists.c.o  -o cmTC_f5ade -lpthreads -lm 
+/usr/bin/ld: cannot find -lpthreads
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+CMakeFiles/cmTC_f5ade.dir/build.make:97: recipe for target 'cmTC_f5ade' failed
+make[1]: *** [cmTC_f5ade] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_f5ade/fast' failed
+make: *** [cmTC_f5ade/fast] Error 2
+
+
+Determining if the function xar_open exists in the xar failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4f77d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4f77d.dir/build.make CMakeFiles/cmTC_4f77d.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4f77d.dir/CheckFunctionExists.c.o
+/usr/bin/clang-5.0   -DCHECK_FUNCTION_EXISTS=xar_open   -o CMakeFiles/cmTC_4f77d.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_4f77d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4f77d.dir/link.txt --verbose=1
+/usr/bin/clang-5.0  -DCHECK_FUNCTION_EXISTS=xar_open    CMakeFiles/cmTC_4f77d.dir/CheckFunctionExists.c.o  -o cmTC_4f77d -lxar -lm 
+/usr/bin/ld: cannot find -lxar
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+CMakeFiles/cmTC_4f77d.dir/build.make:97: recipe for target 'cmTC_4f77d' failed
+make[1]: *** [cmTC_4f77d] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_4f77d/fast' failed
+make: *** [cmTC_4f77d/fast] Error 2
+
+
+Determining if the arc4random exist failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_ceac6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ceac6.dir/build.make CMakeFiles/cmTC_ceac6.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ceac6.dir/CheckSymbolExists.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_ceac6.dir/CheckSymbolExists.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: use of undeclared identifier 'arc4random'; did you mean 'srandom'?
+  return ((int*)(&arc4random))[argc];
+                  ^~~~~~~~~~
+                  srandom
+/usr/include/stdlib.h:404:13: note: 'srandom' declared here
+extern void srandom (unsigned int __seed) __THROW;
+            ^
+1 error generated.
+CMakeFiles/cmTC_ceac6.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_ceac6.dir/CheckSymbolExists.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_ceac6.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_ceac6/fast' failed
+make: *** [cmTC_ceac6/fast] Error 2
+
+File /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdlib.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef arc4random
+  return ((int*)(&arc4random))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the mallctl exist failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a3b10/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a3b10.dir/build.make CMakeFiles/cmTC_a3b10.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a3b10.dir/CheckSymbolExists.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_a3b10.dir/CheckSymbolExists.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:2:10: fatal error: 'malloc_np.h' file not found
+#include <malloc_np.h>
+         ^~~~~~~~~~~~~
+1 error generated.
+CMakeFiles/cmTC_a3b10.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_a3b10.dir/CheckSymbolExists.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_a3b10.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_a3b10/fast' failed
+make: *** [cmTC_a3b10/fast] Error 2
+
+File /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <malloc_np.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef mallctl
+  return ((int*)(&mallctl))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the malloc_zone_statistics exist failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_106e4/fast"
+/usr/bin/make -f CMakeFiles/cmTC_106e4.dir/build.make CMakeFiles/cmTC_106e4.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_106e4.dir/CheckSymbolExists.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_106e4.dir/CheckSymbolExists.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:2:10: fatal error: 'malloc/malloc.h' file not found
+#include <malloc/malloc.h>
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+CMakeFiles/cmTC_106e4.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_106e4.dir/CheckSymbolExists.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_106e4.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_106e4/fast' failed
+make: *** [cmTC_106e4/fast] Error 2
+
+File /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <malloc/malloc.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef malloc_zone_statistics
+  return ((int*)(&malloc_zone_statistics))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the strerror_s exist failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7894d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7894d.dir/build.make CMakeFiles/cmTC_7894d.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7894d.dir/CheckSymbolExists.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_7894d.dir/CheckSymbolExists.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: use of undeclared identifier 'strerror_s'
+  return ((int*)(&strerror_s))[argc];
+                  ^
+1 error generated.
+CMakeFiles/cmTC_7894d.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_7894d.dir/CheckSymbolExists.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_7894d.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_7894d/fast' failed
+make: *** [cmTC_7894d/fast] Error 2
+
+File /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <string.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strerror_s
+  return ((int*)(&strerror_s))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the dladdr exist failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4a58c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4a58c.dir/build.make CMakeFiles/cmTC_4a58c.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4a58c.dir/CheckSymbolExists.c.o
+/usr/bin/clang-5.0    -o CMakeFiles/cmTC_4a58c.dir/CheckSymbolExists.c.o   -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: use of undeclared identifier 'dladdr'
+  return ((int*)(&dladdr))[argc];
+                  ^
+1 error generated.
+CMakeFiles/cmTC_4a58c.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_4a58c.dir/CheckSymbolExists.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_4a58c.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_4a58c/fast' failed
+make: *** [cmTC_4a58c/fast] Error 2
+
+File /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <dlfcn.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef dladdr
+  return ((int*)(&dladdr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Performing C++ SOURCE FILE Test LIBCXXABI_HAS_WX_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1c470/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1c470.dir/build.make CMakeFiles/cmTC_1c470.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_1c470.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXXABI_HAS_WX_FLAG  -nodefaultlibs   /WX -o CMakeFiles/cmTC_1c470.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/WX'
+CMakeFiles/cmTC_1c470.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_1c470.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_1c470.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_1c470/fast' failed
+make: *** [cmTC_1c470/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXXABI_HAS_NO_WX_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_281dc/fast"
+/usr/bin/make -f CMakeFiles/cmTC_281dc.dir/build.make CMakeFiles/cmTC_281dc.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_281dc.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXXABI_HAS_NO_WX_FLAG  -nodefaultlibs   /WX- -o CMakeFiles/cmTC_281dc.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/WX-'
+CMakeFiles/cmTC_281dc.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_281dc.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_281dc.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_281dc/fast' failed
+make: *** [cmTC_281dc/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXXABI_HAS_EHSC_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9fb4d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9fb4d.dir/build.make CMakeFiles/cmTC_9fb4d.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_9fb4d.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXXABI_HAS_EHSC_FLAG  -nodefaultlibs   /EHsc -o CMakeFiles/cmTC_9fb4d.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/EHsc'
+CMakeFiles/cmTC_9fb4d.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_9fb4d.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_9fb4d.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_9fb4d/fast' failed
+make: *** [cmTC_9fb4d/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXXABI_HAS_NO_EHS_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4a95b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4a95b.dir/build.make CMakeFiles/cmTC_4a95b.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4a95b.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXXABI_HAS_NO_EHS_FLAG  -nodefaultlibs   /EHs- -o CMakeFiles/cmTC_4a95b.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/EHs-'
+CMakeFiles/cmTC_4a95b.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_4a95b.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_4a95b.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_4a95b/fast' failed
+make: *** [cmTC_4a95b/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXXABI_HAS_NO_EHA_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_bbe0f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bbe0f.dir/build.make CMakeFiles/cmTC_bbe0f.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_bbe0f.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXXABI_HAS_NO_EHA_FLAG  -nodefaultlibs   /EHa- -o CMakeFiles/cmTC_bbe0f.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/EHa-'
+CMakeFiles/cmTC_bbe0f.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_bbe0f.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_bbe0f.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_bbe0f/fast' failed
+make: *** [cmTC_bbe0f/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXXABI_HAS_NO_GR_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0f2ec/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0f2ec.dir/build.make CMakeFiles/cmTC_0f2ec.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_0f2ec.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXXABI_HAS_NO_GR_FLAG  -nodefaultlibs   /GR- -o CMakeFiles/cmTC_0f2ec.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/GR-'
+CMakeFiles/cmTC_0f2ec.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_0f2ec.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_0f2ec.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_0f2ec/fast' failed
+make: *** [cmTC_0f2ec/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXXABI_SUPPORTS_WX_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3a6db/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3a6db.dir/build.make CMakeFiles/cmTC_3a6db.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_3a6db.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXXABI_SUPPORTS_WX_FLAG  -nodefaultlibs   -WX- -o CMakeFiles/cmTC_3a6db.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+warning: unknown warning option '-WX-' [-Wunknown-warning-option]
+1 warning generated.
+Linking CXX executable cmTC_3a6db
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a6db.dir/link.txt --verbose=1
+/usr/bin/clang++-5.0   -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXXABI_SUPPORTS_WX_FLAG  -nodefaultlibs   -Wl,-allow-shlib-undefined  CMakeFiles/cmTC_3a6db.dir/src.cxx.o  -o cmTC_3a6db -lm -lc -lgcc_s 
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXXABI_SUPPORTS_EHSC_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_db4c7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_db4c7.dir/build.make CMakeFiles/cmTC_db4c7.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_db4c7.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXXABI_SUPPORTS_EHSC_FLAG  -nodefaultlibs   -EHsc -o CMakeFiles/cmTC_db4c7.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: unknown argument: '-EHsc'
+CMakeFiles/cmTC_db4c7.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_db4c7.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_db4c7.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_db4c7/fast' failed
+make: *** [cmTC_db4c7/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXX_HAS_WX_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_78c06/fast"
+/usr/bin/make -f CMakeFiles/cmTC_78c06.dir/build.make CMakeFiles/cmTC_78c06.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_78c06.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXX_HAS_WX_FLAG  -nodefaultlibs   /WX -o CMakeFiles/cmTC_78c06.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/WX'
+CMakeFiles/cmTC_78c06.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_78c06.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_78c06.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_78c06/fast' failed
+make: *** [cmTC_78c06/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXX_HAS_NO_WX_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_fb553/fast"
+/usr/bin/make -f CMakeFiles/cmTC_fb553.dir/build.make CMakeFiles/cmTC_fb553.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_fb553.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXX_HAS_NO_WX_FLAG  -nodefaultlibs   /WX- -o CMakeFiles/cmTC_fb553.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/WX-'
+CMakeFiles/cmTC_fb553.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_fb553.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_fb553.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_fb553/fast' failed
+make: *** [cmTC_fb553/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXX_HAS_EHSC_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_17908/fast"
+/usr/bin/make -f CMakeFiles/cmTC_17908.dir/build.make CMakeFiles/cmTC_17908.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_17908.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXX_HAS_EHSC_FLAG  -nodefaultlibs   /EHsc -o CMakeFiles/cmTC_17908.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/EHsc'
+CMakeFiles/cmTC_17908.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_17908.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_17908.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_17908/fast' failed
+make: *** [cmTC_17908/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXX_HAS_NO_EHS_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_adffa/fast"
+/usr/bin/make -f CMakeFiles/cmTC_adffa.dir/build.make CMakeFiles/cmTC_adffa.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_adffa.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXX_HAS_NO_EHS_FLAG  -nodefaultlibs   /EHs- -o CMakeFiles/cmTC_adffa.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/EHs-'
+CMakeFiles/cmTC_adffa.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_adffa.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_adffa.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_adffa/fast' failed
+make: *** [cmTC_adffa/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXX_HAS_NO_EHA_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_968ea/fast"
+/usr/bin/make -f CMakeFiles/cmTC_968ea.dir/build.make CMakeFiles/cmTC_968ea.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_968ea.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXX_HAS_NO_EHA_FLAG  -nodefaultlibs   /EHa- -o CMakeFiles/cmTC_968ea.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/EHa-'
+CMakeFiles/cmTC_968ea.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_968ea.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_968ea.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_968ea/fast' failed
+make: *** [cmTC_968ea/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXX_HAS_NO_GR_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1a52a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1a52a.dir/build.make CMakeFiles/cmTC_1a52a.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_1a52a.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXX_HAS_NO_GR_FLAG  -nodefaultlibs   /GR- -o CMakeFiles/cmTC_1a52a.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: no such file or directory: '/GR-'
+CMakeFiles/cmTC_1a52a.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_1a52a.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_1a52a.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_1a52a/fast' failed
+make: *** [cmTC_1a52a/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test LIBCXX_SUPPORTS_EHSC_FLAG failed with the following output:
+Change Dir: /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_13362/fast"
+/usr/bin/make -f CMakeFiles/cmTC_13362.dir/build.make CMakeFiles/cmTC_13362.dir/build
+make[1]: Entering directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_13362.dir/src.cxx.o
+/usr/bin/clang++-5.0    -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers  -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wstring-conversion -ffunction-sections -fdata-sections -DLIBCXX_SUPPORTS_EHSC_FLAG  -nodefaultlibs   -EHsc -o CMakeFiles/cmTC_13362.dir/src.cxx.o -c /home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: unknown argument: '-EHsc'
+CMakeFiles/cmTC_13362.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_13362.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_13362.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/pablo/Unreal3/AirSim/llvm-build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_13362/fast' failed
+make: *** [cmTC_13362/fast] Error 2
+
+Source file was:
+int main() { return 0; }

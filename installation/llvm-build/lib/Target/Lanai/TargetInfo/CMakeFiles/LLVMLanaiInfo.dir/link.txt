@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../libLLVMLanaiInfo.a  CMakeFiles/LLVMLanaiInfo.dir/LanaiTargetInfo.cpp.o
+/usr/bin/ranlib ../../../libLLVMLanaiInfo.a

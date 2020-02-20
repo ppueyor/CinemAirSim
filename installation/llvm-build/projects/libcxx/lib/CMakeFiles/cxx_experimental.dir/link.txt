@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/libc++experimental.a  CMakeFiles/cxx_experimental.dir/__/src/experimental/memory_resource.cpp.o CMakeFiles/cxx_experimental.dir/__/src/experimental/filesystem/directory_iterator.cpp.o CMakeFiles/cxx_experimental.dir/__/src/experimental/filesystem/operations.cpp.o CMakeFiles/cxx_experimental.dir/__/src/experimental/filesystem/path.cpp.o
+/usr/bin/ranlib ../../../lib/libc++experimental.a
