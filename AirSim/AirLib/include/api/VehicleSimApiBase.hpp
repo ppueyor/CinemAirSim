@@ -59,9 +59,10 @@ public:
     virtual void setFocalLength(float focal_length);
     virtual float getFocusDistance();
     virtual void setFocusDistance(float focus_distance);
+    virtual float getFocusAperture();
+    virtual void setFocusAperture(float focus_aperture);
     virtual void enableFocusPlane(bool enable);
     virtual std::string getCurrentFieldOfView();
-    virtual void setFocusAperture(float aperture);
     //end AddOn
 
     virtual Pose getPose() const = 0;

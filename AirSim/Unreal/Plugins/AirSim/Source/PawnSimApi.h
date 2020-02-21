@@ -105,9 +105,10 @@ public: //implementation of VehicleSimApiBase
     virtual void setFocalLength(float focal_length) override;
     virtual  float getFocusDistance() override;
     virtual void setFocusDistance(float focus_distance) override;
+    virtual  float getFocusAperture() override;
+    virtual void setFocusAperture(float focus_aperture) override;
     virtual void enableFocusPlane(bool enable) override;
     virtual std::string getCurrentFieldOfView() override;
-    virtual void setFocusAperture(float aperture) override;
     //end AddOn
 
 protected: //additional interface for derived class

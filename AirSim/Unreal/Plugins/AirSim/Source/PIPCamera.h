@@ -47,13 +47,14 @@ std::vector<std::string> getPresetFilmbackSettings();
 void setPresetFilmbackSettings(std::string preset_string);
 std::string getFilmbackSettings();
 float setFilmbackSettings(float sensor_width,float sensot_height);
-void setFocalLength(float focal_length);
 float getFocalLength();
-void setFocusDistance(float focus_distance);
+void setFocalLength(float focal_length);
 float getFocusDistance();
+void setFocusDistance(float focus_distance);
+float getFocusAperture();
+void setFocusAperture(float focus_aperture);
 void enableFocusPlane(bool enable);
 std::string getCurrentFieldOfView();
-void setFocusAperture(float aperture);
 //end AddOn
 
 void setCameraTypeEnabled(ImageType type, bool enabled);

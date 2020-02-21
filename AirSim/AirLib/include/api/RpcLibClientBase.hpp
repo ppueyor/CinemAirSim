@@ -43,7 +43,7 @@ public:
     void simContinueForTime(double seconds);
 
     void simSetTimeOfDay(bool is_enabled, const string& start_datetime = "", bool is_start_datetime_dst = false,
-        float celestial_clock_speed = 1, float update_interval_secs = 60, bool move_sun = true);
+                         float celestial_clock_speed = 1, float update_interval_secs = 60, bool move_sun = true);
 
     void simEnableWeather(bool enable);
     void simSetWeatherParameter(WorldSimApiBase::WeatherParameter param, float val);
@@ -91,13 +91,14 @@ public:
     void simSetPresetFilmbackSettings(const std::string& preset_filmback_settings="", const std::string& vehicle_name = "");
     std::string  simGetFilmbackSettings(const std::string& vehicle_name = "");
     float simSetFilmbackSettings(const float sensor_width, const float sensor_heigth, const std::string& vehicle_name = "");
-   float simGetFocalLength(const std::string& vehicle_name = "");
+    float simGetFocalLength(const std::string& vehicle_name = "");
     void simSetFocalLength(float focal_length, const std::string& vehicle_name = "");
     float simGetFocusDistance(const std::string& vehicle_name = "");
     void simSetFocusDistance(float focus_distance, const std::string& vehicle_name = "");
+    float simGetFocusAperture(const std::string& vehicle_name = "");
+    void  simSetFocusAperture(const float focus_aperture, const std::string& vehicle_name = "");
     void simEnableFocusPlane(const bool enable, const std::string& vehicle_name = "");
     std::string simGetCurrentFieldOfView(const std::string& vehicle_name = "");
-    void  simSetFocusAperture(const float aperture, const std::string& vehicle_name = "");
     //end Addon
 
     CollisionInfo simGetCollisionInfo(const std::string& vehicle_name = "") const;

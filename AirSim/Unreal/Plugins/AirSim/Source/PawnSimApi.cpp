@@ -369,6 +369,16 @@ void PawnSimApi::setFocusDistance(float focus_distance)
    return getCamera("")->setFocusDistance(focus_distance);
 }
 
+float PawnSimApi::getFocusAperture()
+{
+   return getCamera("")->getFocusAperture();
+}
+
+void PawnSimApi::setFocusAperture(float focus_aperture)
+{
+   return getCamera("")->setFocusAperture(focus_aperture);
+}
+
 void PawnSimApi::enableFocusPlane(bool enable)
 {
    return getCamera("")->enableFocusPlane(enable);
@@ -377,11 +387,6 @@ void PawnSimApi::enableFocusPlane(bool enable)
 std::string PawnSimApi::getCurrentFieldOfView()
 {
    return getCamera("")->getCurrentFieldOfView();
-}
-
-void PawnSimApi::setFocusAperture(float aperture)
-{
-   return getCamera("")->setFocusAperture(aperture);
 }
 //AddOn Methods
 

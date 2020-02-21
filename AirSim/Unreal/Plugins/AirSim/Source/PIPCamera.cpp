@@ -586,6 +586,15 @@ void APIPCamera::setFocusDistance(float focus_distance)
     camera_->FocusSettings.ManualFocusDistance = focus_distance;
 }
 
+float APIPCamera::getFocusAperture()
+{
+    return camera_->CurrentAperture;
+}
+
+void APIPCamera::setFocusAperture(float focus_aperture)  {
+    camera_->CurrentAperture = focus_aperture;
+}
+
 void APIPCamera::enableFocusPlane(bool enable)  {
     camera_->FocusSettings.bDrawDebugFocusPlane = enable;
 }
@@ -594,10 +603,6 @@ std::string APIPCamera::getCurrentFieldOfView()  {
     std::ostringstream ss;
     ss << "Current Field Of View:\n\tHorizontal Field Of View: " << camera_->GetHorizontalFieldOfView() << ";\n\t Vertical Field Of View: " << camera_->GetVerticalFieldOfView();
     return ss.str();
-}
-
-void APIPCamera::setFocusAperture(float aperture)  {
-    camera_->CurrentAperture = aperture;
 }
 
 //end AddOn

@@ -300,6 +300,17 @@ std::vector<std::string> RpcLibClientBase::simGetPresetLensSettings(const std::s
         pimpl_->client.call("simSetFocusDistance", focus_distance, vehicle_name);
     }
 
+    float RpcLibClientBase::simGetFocusAperture(const std::string &vehicle_name)
+    {
+        float result = pimpl_->client.call("simGetFocusAperture", vehicle_name).as<float>();
+        return result;
+    }
+
+    void RpcLibClientBase::simSetFocusAperture(const float focus_aperture, const std::string &vehicle_name)
+    {
+        pimpl_->client.call("simSetFocusAperture", focus_aperture, vehicle_name);
+    }
+
     void RpcLibClientBase::simEnableFocusPlane(const bool enable, const std::string &vehicle_name)
     {
         pimpl_->client.call("simEnableFocusPlane", enable, vehicle_name);
@@ -310,11 +321,6 @@ std::vector<std::string> RpcLibClientBase::simGetPresetLensSettings(const std::s
         std::string result = pimpl_->client.call("simGetCurrentFieldOfView", vehicle_name).as<std::string>();
         return result;
     }
-
-    void RpcLibClientBase::simSetFocusAperture(const float aperture, const std::string &vehicle_name)
-    {
-        pimpl_->client.call("simSetFocusAperture", aperture, vehicle_name);
-    } 
     //End AddOn
     void RpcLibClientBase::simPrintLogMessage(const std::string& message, std::string message_param, unsigned char  severity)
     {

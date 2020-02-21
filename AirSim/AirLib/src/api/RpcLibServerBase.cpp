@@ -190,12 +190,16 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
         getVehicleSimApi(vehicle_name)->setFocusDistance(focus_distance);
     });
 
-    pimpl_->server.bind("simEnableFocusPlane", [&](const bool enable, const std::string& vehicle_name) -> void {
-        getVehicleSimApi(vehicle_name)->enableFocusPlane(enable);
+    pimpl_->server.bind("simGetFocusAperture", [&](const std::string& vehicle_name) -> float {
+        getVehicleSimApi(vehicle_name)->getFocusAperture();
     });
 
-    pimpl_->server.bind("simSetFocusAperture", [&](const float aperture, const std::string& vehicle_name) -> void {
-        getVehicleSimApi(vehicle_name)->setFocusAperture(aperture);
+    pimpl_->server.bind("simSetFocusAperture", [&](const float focus_aperture, const std::string& vehicle_name) -> void {
+        getVehicleSimApi(vehicle_name)->setFocusAperture(focus_aperture);
+    });
+
+    pimpl_->server.bind("simEnableFocusPlane", [&](const bool enable, const std::string& vehicle_name) -> void {
+        getVehicleSimApi(vehicle_name)->enableFocusPlane(enable);
     });
 
     pimpl_->server.bind("simGetCurrentFieldOfView", [&](const std::string& vehicle_name) -> string {
