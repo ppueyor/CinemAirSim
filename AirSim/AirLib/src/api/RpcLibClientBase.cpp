@@ -286,10 +286,17 @@ std::vector<std::string> RpcLibClientBase::simGetPresetLensSettings(const std::s
         float result = pimpl_->client.call("simGetFocalLength", vehicle_name).as<float>();
         return result;
     }
+
     void RpcLibClientBase::simSetFocalLength(const float focal_length, const std::string &vehicle_name)
     {
         pimpl_->client.call("simSetFocalLength", focal_length, vehicle_name);
     }
+
+    void RpcLibClientBase::simEnableManualFocus(const bool enable, const std::string &vehicle_name)
+    {
+        pimpl_->client.call("simEnableManualFocus", enable, vehicle_name);
+    }
+
     float RpcLibClientBase::simGetFocusDistance(const std::string &vehicle_name)
     {
         float result = pimpl_->client.call("simGetFocusDistance", vehicle_name).as<float>();

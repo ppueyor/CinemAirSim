@@ -49,6 +49,7 @@ std::string getFilmbackSettings();
 float setFilmbackSettings(float sensor_width,float sensot_height);
 float getFocalLength();
 void setFocalLength(float focal_length);
+void enableManualFocus(bool enable);
 float getFocusDistance();
 void setFocusDistance(float focus_distance);
 float getFocusAperture();

@@ -93,6 +93,7 @@ public:
     float simSetFilmbackSettings(const float sensor_width, const float sensor_heigth, const std::string& vehicle_name = "");
     float simGetFocalLength(const std::string& vehicle_name = "");
     void simSetFocalLength(float focal_length, const std::string& vehicle_name = "");
+    void simEnableManualFocus(const bool enable, const std::string& vehicle_name = "");
     float simGetFocusDistance(const std::string& vehicle_name = "");
     void simSetFocusDistance(float focus_distance, const std::string& vehicle_name = "");
     float simGetFocusAperture(const std::string& vehicle_name = "");

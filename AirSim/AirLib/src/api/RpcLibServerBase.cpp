@@ -182,6 +182,10 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
         getVehicleSimApi(vehicle_name)->setFocalLength(focal_lenght);
     });
 
+    pimpl_->server.bind("simEnableManualFocus", [&](const bool enable, const std::string& vehicle_name) -> void {
+        getVehicleSimApi(vehicle_name)->enableManualFocus(enable);
+    });
+
     pimpl_->server.bind("simGetFocusDistance", [&](const std::string& vehicle_name) -> float {
        return getVehicleSimApi(vehicle_name)->getFocusDistance();
     });

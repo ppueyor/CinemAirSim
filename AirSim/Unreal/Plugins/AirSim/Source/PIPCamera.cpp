@@ -576,6 +576,15 @@ void APIPCamera::setFocalLength(float focal_length)
     camera_->CurrentFocalLength = focal_length;
 }
 
+void APIPCamera::enableManualFocus(bool enable)  {
+    if(enable){
+        camera_->FocusSettings.FocusMethod = ECameraFocusMethod::Manual;
+    }
+    else{
+        camera_->FocusSettings.FocusMethod = ECameraFocusMethod::None;
+    }
+}
+
 float APIPCamera::getFocusDistance()
 {
     return camera_->FocusSettings.ManualFocusDistance;

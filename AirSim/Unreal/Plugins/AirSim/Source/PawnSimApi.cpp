@@ -359,6 +359,11 @@ void PawnSimApi::setFocalLength(float focal_length)
    return getCamera("")->setFocalLength(focal_length);
 }
 
+void PawnSimApi::enableManualFocus(bool enable)
+{
+   return getCamera("")->enableManualFocus(enable);
+}
+
 float PawnSimApi::getFocusDistance()
 {
    return getCamera("")->getFocusDistance();

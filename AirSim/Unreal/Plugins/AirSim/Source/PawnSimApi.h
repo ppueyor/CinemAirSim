@@ -103,6 +103,7 @@ public: //implementation of VehicleSimApiBase
     virtual float setFilmbackSettings(float width, float height) override;
     virtual float getFocalLength() override;
     virtual void setFocalLength(float focal_length) override;
+    virtual void enableManualFocus(bool enable) override;
     virtual  float getFocusDistance() override;
     virtual void setFocusDistance(float focus_distance) override;
     virtual  float getFocusAperture() override;

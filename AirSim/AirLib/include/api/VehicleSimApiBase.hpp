@@ -57,6 +57,7 @@ public:
     virtual float setFilmbackSettings(float width, float height);
     virtual float getFocalLength();
     virtual void setFocalLength(float focal_length);
+    virtual void enableManualFocus(bool enable);
     virtual float getFocusDistance();
     virtual void setFocusDistance(float focus_distance);
     virtual float getFocusAperture();
