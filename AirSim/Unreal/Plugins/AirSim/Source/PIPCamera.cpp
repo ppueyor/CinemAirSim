@@ -42,6 +42,8 @@ void APIPCamera::PostInitializeComponents()
     Super::PostInitializeComponents();
 
     camera_ = UAirBlueprintLib::GetActorComponent<UCineCameraComponent>(this, TEXT("CameraComponent"));
+    cinecapture_ = UAirBlueprintLib::GetActorComponent<UCineCameraCaptureComponent>(this, TEXT("CineCameraCapture"));
+
     captures_.Init(nullptr, imageTypeCount());
     render_targets_.Init(nullptr, imageTypeCount());
 
@@ -151,7 +153,7 @@ msr::airlib::ProjectionMatrix APIPCamera::getProjectionMatrix(const APIPCamera::
                             );
             }
         }
-        
+
         //Takes a vector from NORTH-EAST-DOWN coordinates (AirSim) to EAST-UP-SOUTH coordinates (Unreal). Leaves W coordinate unchanged.
         FMatrix coordinateChangeTranspose = FMatrix(
                     FPlane(0, 0, -1, 0),
@@ -225,6 +227,7 @@ void APIPCamera::showToScreen()
 {
     camera_->SetVisibility(true);
     camera_->Activate();
+
     APlayerController* controller = this->GetWorld()->GetFirstPlayerController();
     controller->SetViewTarget(this);
     UAirBlueprintLib::LogMessage(TEXT("Camera: "), GetName(), LogDebugLevel::Informational);
@@ -244,6 +247,7 @@ bool APIPCamera::getCameraTypeEnabled(ImageType type) const
 void APIPCamera::setCameraTypeEnabled(ImageType type, bool enabled)
 {
     enableCaptureComponent(type, enabled);
+    enableCineCaptureComponent(enabled);
 }
 
 void APIPCamera::setCameraOrientation(const FRotator& rotator)
@@ -292,11 +296,15 @@ void APIPCamera::setupCameraFromSettings(const APIPCamera::CameraSetting& camera
             updateCameraSetting(camera_, capture_setting, ned_transform);
 
             setNoiseMaterial(image_type, camera_, camera_->PostProcessSettings, noise_setting);
+
+            updateCameraSetting(cinecapture_, capture_setting, ned_transform);
+
+            setNoiseMaterial(image_type, cinecapture_, cinecapture_->PostProcessSettings, noise_setting);
         }
     }
 }
 
-void APIPCamera::updateCaptureComponentSetting(USceneCaptureComponent2D* capture, UTextureRenderTarget2D* render_target, 
+void APIPCamera::updateCaptureComponentSetting(USceneCaptureComponent2D* capture, UTextureRenderTarget2D* render_target,
                                                bool auto_format, const EPixelFormat& pixel_format, const CaptureSetting& setting, const NedTransform& ned_transform)
 {
     if (auto_format)
@@ -443,6 +451,27 @@ void APIPCamera::enableCaptureComponent(const APIPCamera::ImageType type, bool i
     //else nothing to enable
 }
 
+void APIPCamera::enableCineCaptureComponent(bool is_enabled)
+{
+    UCineCameraCaptureComponent* capture = getCineCaptureComponent(false);
+    if (capture != nullptr) {
+        if (is_enabled) {
+            //do not make unnecessary calls to Activate() which otherwise causes crash in Unreal
+            if (!capture->IsActive() || capture->TextureTarget == nullptr) {
+                capture->TextureTarget = getRenderTarget(ImageType::Scene, false);
+                capture->Activate();
+            }
+        }
+        else {
+            if (capture->IsActive() || capture->TextureTarget != nullptr) {
+                capture->Deactivate();
+                capture->TextureTarget = nullptr;
+            }
+        }
+    }
+    //else nothing to enable
+}
+
 UTextureRenderTarget2D* APIPCamera::getRenderTarget(const APIPCamera::ImageType type, bool if_active)
 {
     unsigned int image_type = Utils::toNumeric(type);
@@ -461,11 +490,18 @@ USceneCaptureComponent2D* APIPCamera::getCaptureComponent(const APIPCamera::Imag
     return nullptr;
 }
 
+UCineCameraCaptureComponent* APIPCamera::getCineCaptureComponent(bool if_active)
+{
+    return cinecapture_;
+}
+
 void APIPCamera::disableAllPIP()
 {
     for (unsigned int image_type = 0; image_type < imageTypeCount(); ++image_type) {
         enableCaptureComponent(Utils::toEnum<ImageType>(image_type), false);
     }
+
+    enableCineCaptureComponent(false);
 }
 
 
@@ -518,6 +554,7 @@ void APIPCamera::setPresetLensSettings(std::string preset_string)
 {
     FString preset(preset_string.c_str());
     camera_->SetLensPresetByName(preset);
+    cinecapture_->SetLensPresetByName(preset);
 }
 
 std::vector<std::string> APIPCamera::getPresetFilmbackSettings()
@@ -542,6 +579,7 @@ void APIPCamera::setPresetFilmbackSettings(std::string preset_string)
 {
     FString preset(preset_string.c_str());
     camera_->SetFilmbackPresetByName(preset);
+    cinecapture_->SetFilmbackPresetByName(preset);
 }
 
 std::string APIPCamera::getFilmbackSettings()
@@ -563,6 +601,9 @@ float APIPCamera::setFilmbackSettings(float sensor_width, float sensor_height)
     camera_->FilmbackSettings.SensorWidth = sensor_width;
     camera_->FilmbackSettings.SensorHeight = sensor_height;
 
+    cinecapture_->FilmbackSettings.SensorWidth = sensor_width;
+    cinecapture_->FilmbackSettings.SensorHeight = sensor_height;
+
     return camera_->FilmbackSettings.SensorAspectRatio;
 }
 
@@ -574,13 +615,16 @@ float APIPCamera::getFocalLength()
 void APIPCamera::setFocalLength(float focal_length)
 {
     camera_->CurrentFocalLength = focal_length;
+    cinecapture_->CurrentFocalLength = focal_length;
 }
 
 void APIPCamera::enableManualFocus(bool enable)  {
     if(enable){
         camera_->FocusSettings.FocusMethod = ECameraFocusMethod::Manual;
+        cinecapture_->FocusSettings.FocusMethod = ECameraFocusMethod::Manual;
     }
     else{
+        cinecapture_->FocusSettings.FocusMethod = ECameraFocusMethod::None;
         camera_->FocusSettings.FocusMethod = ECameraFocusMethod::None;
     }
 }
@@ -593,6 +637,7 @@ float APIPCamera::getFocusDistance()
 void APIPCamera::setFocusDistance(float focus_distance)
 {
     camera_->FocusSettings.ManualFocusDistance = focus_distance;
+    cinecapture_->FocusSettings.ManualFocusDistance = focus_distance;
 }
 
 float APIPCamera::getFocusAperture()
@@ -602,10 +647,12 @@ float APIPCamera::getFocusAperture()
 
 void APIPCamera::setFocusAperture(float focus_aperture)  {
     camera_->CurrentAperture = focus_aperture;
+    cinecapture_->CurrentAperture = focus_aperture;
 }
 
 void APIPCamera::enableFocusPlane(bool enable)  {
     camera_->FocusSettings.bDrawDebugFocusPlane = enable;
+    cinecapture_->FocusSettings.bDrawDebugFocusPlane = enable;
 }
 
 std::string APIPCamera::getCurrentFieldOfView()  {

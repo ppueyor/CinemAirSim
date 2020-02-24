@@ -8,6 +8,7 @@
 #include "common/ImageCaptureBase.hpp"
 #include "common/common_utils/Utils.hpp"
 #include <CineCameraActor.h>
+#include <CineCameraCaptureComponent.h>
 #include <CineCameraComponent.h>
 #include "common/AirSimSettings.hpp"
 #include "NedTransform.h"
@@ -67,6 +68,7 @@ msr::airlib::ProjectionMatrix getProjectionMatrix(const APIPCamera::ImageType im
 
 
 USceneCaptureComponent2D* getCaptureComponent(const ImageType type, bool if_active);
+UCineCameraCaptureComponent* getCineCaptureComponent(bool if_active);
 UTextureRenderTarget2D* getRenderTarget(const ImageType type, bool if_active);
 
 msr::airlib::Pose getPose() const;
@@ -76,6 +78,8 @@ UPROPERTY() TArray<USceneCaptureComponent2D*> captures_;
 UPROPERTY() TArray<UTextureRenderTarget2D*> render_targets_;
 
 UPROPERTY() UCineCameraComponent*  camera_;
+UPROPERTY() UCineCameraCaptureComponent*  cinecapture_;
+
 //TMap<int, UMaterialInstanceDynamic*> noise_materials_;
 //below is needed because TMap doesn't work with UPROPERTY, but we do have -ve index
 UPROPERTY() TArray<UMaterialInstanceDynamic*> noise_materials_;
@@ -94,6 +98,7 @@ typedef AirSimSettings::NoiseSetting NoiseSetting;
 
 static unsigned int imageTypeCount();
 void enableCaptureComponent(const ImageType type, bool is_enabled);
+void enableCineCaptureComponent(bool is_enabled);
 static void updateCaptureComponentSetting(USceneCaptureComponent2D* capture, UTextureRenderTarget2D* render_target,
                                           bool auto_format, const EPixelFormat& pixel_format, const CaptureSetting& setting, const NedTransform& ned_transform);
 void setNoiseMaterial(int image_type, UObject* outer, FPostProcessSettings& obj, const NoiseSetting& settings);
