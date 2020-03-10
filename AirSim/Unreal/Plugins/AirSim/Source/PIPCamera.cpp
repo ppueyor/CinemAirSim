@@ -506,7 +506,7 @@ std::vector<std::string> APIPCamera::getPresetLensSettings()
 
         ss << "Name: " << name << ";\n\t MinFocalLength: " << preset.LensSettings.MinFocalLength << "; \t MaxFocalLength: " << preset.LensSettings.MaxFocalLength;
         ss << "\n\t Min FStop: " << preset.LensSettings.MinFStop << "; \t Max Fstop: " << preset.LensSettings.MaxFStop;
-        ss << "\n\t Diaphragm Blade Count: " << preset.LensSettings.DiaphragmBladeCount;
+        //ss << "\n\t Diaphragm Blade Count: " << preset.LensSettings.DiaphragmBladeCount;
         std::string final_string(ss.str());
         vector.push_back(final_string);
 
