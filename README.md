@@ -1,5 +1,5 @@
 
-# CinematicAirSim
+# CinemAirSim
 An AddOn for AirSim that includes all the tools to integrate a cinema oriented camera
 
 ## Steps to install it:
@@ -20,7 +20,7 @@ In this video,  we have reproduced some scenes of films that were awarded with t
 
 *  ##### Demo of the functionalities
 The example shows a simple program that executes a user prompt that allows to choose among different options to interact with Unreal and the drones of AirSim while some cinematographic aspects are read/written in real time.
-The c++ code is available in https://github.com/ppueyor/CinemAirSim/tree/master/Demo
+The c++ code is available in https://github.com/ppueyor/CinemAirSim/tree/master/Demo .
 
 [![](http://img.youtube.com/vi/UVY-84DRi3s/0.jpg)](http://www.youtube.com/watch?v=UVY-84DRi3s "")
 
@@ -62,10 +62,8 @@ This plugin adds the next options to the base API (the vehicle_name param indica
 * ##### std::string simGetCurrentFieldOfView(const std::string& vehicle_name = "");
 	 Gets the current Field Of View
 
-[![](http://img.youtube.com/vi/OJGNaitWZVA/0.jpg)](http://www.youtube.com/watch?v=OJGNaitWZVA "")
-
 ## EXTRA1.
-In my case, the build.sh from the native installation for Linux did not work. To make it work:
+In my particular case, the build.sh from the native installation for Linux did not work. To make it work:
 1. Replace the build.sh file for the build.sh from the installation folder of this repo
 2. Add the folder llvm-build folder from the folder "installation" of this repo to the root of AirSim
 3. Try again ./build.sh
