@@ -62,6 +62,22 @@ This plugin adds the next options to the base API (the vehicle_name param indica
 * ##### std::string simGetCurrentFieldOfView(const std::string& vehicle_name = "");
 	 Gets the current Field Of View
 
+### Paper
+
+All technical details are described in the corresponding paper: [CinemAirSim: A Camera-Realistic Robotics Simulator for Cinematographic Purposes](https://arxiv.org/abs/2003.07664)
+
+This work can be cited as:
+```
+@misc{pueyo2020cinemairsim,
+    title={CinemAirSim: A Camera-Realistic Robotics Simulator for Cinematographic Purposes},
+    author={Pablo Pueyo and Eric Cristofalo and Eduardo Montijano and Mac Schwager},
+    year={2020},
+    eprint={2003.07664},
+    archivePrefix={arXiv},
+    primaryClass={cs.RO}
+}
+```
+
 ## EXTRA1.
 In my particular case, the build.sh from the native installation for Linux did not work. To make it work:
 1. Replace the build.sh file for the build.sh from the installation folder of this repo
