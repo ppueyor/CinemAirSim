@@ -22,7 +22,7 @@ In this video,  we have reproduced some scenes of films that were awarded with t
 The example shows a simple program that executes a user prompt that allows to choose among different options to interact with Unreal and the drones of AirSim while some cinematographic aspects are read/written in real time.
 The c++ code is available in https://github.com/ppueyor/CinemAirSim/tree/master/Demo .
 
-[![](http://img.youtube.com/vi/UVY-84DRi3s/0.jpg)](http://www.youtube.com/watch?v=UVY-84DRi3s "")
+[![](https://media.giphy.com/media/gjffUhdGIYjlYU1tbq/giphy.gif)](http://www.youtube.com/watch?v=UVY-84DRi3s "")
 
 
 ## Available functionalities
