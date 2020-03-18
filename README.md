@@ -16,7 +16,7 @@ These two videos show different examples where the possibilities of CinemAirSim 
 *  ##### Scenes from movies
 In this video,  we have reproduced some scenes of films that were awarded with the Academy's Oscar for Best Photography to demonstrate the potential of the simulator and to highlight new avenues of research where it can be used.
 
-[![](http://img.youtube.com/vi/OJGNaitWZVA/0.jpg)](http://www.youtube.com/watch?v=OJGNaitWZVA "")
+[![](https://media.giphy.com/media/LqrDQTsX4pdp8E07II/giphy.gif)](http://www.youtube.com/watch?v=OJGNaitWZVA "")
 
 *  ##### Demo of the functionalities
 The example shows a simple program that executes a user prompt that allows to choose among different options to interact with Unreal and the drones of AirSim while some cinematographic aspects are read/written in real time.
