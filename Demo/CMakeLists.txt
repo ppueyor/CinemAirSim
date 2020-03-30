@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.10.0)
 project(cinemairsim_demo)
 
-set(AIRSIM_ROOT /home/pablo/Documents/Unreal3/AirSim)
+#Uncomment and set the path of your AirSim installation.
+#set(AIRSIM_ROOT /path/of/AirSim)
+
+#Example:
+#set(AIRSIM_ROOT /home/user/Documents/Unreal/AirSim)
 
 add_subdirectory("${AIRSIM_ROOT}/cmake/rpclib_wrapper" rpclib_wrapper)
 add_subdirectory("${AIRSIM_ROOT}/cmake/AirLib" AirLib)
