@@ -2,7 +2,7 @@
 # CinemAirSim
 An AddOn for AirSim that includes all the tools to integrate a cinema oriented camera
 
-## Steps to install it:
+## Steps to add the plugin:
 
 1. Follow the instructions of https://microsoft.github.io/AirSim/docs/build_linux/ till Step 3.3
 2. Copy/Replace the AirSim folder of this repo with the AirSim folder of the root repository to the  and replace all files that are asked to be replaced
@@ -77,6 +77,35 @@ This work can be cited as:
     primaryClass={cs.RO}
 }
 ```
+### Demo
+
+A minimum version of cA Demo shell is provided to test all the new functionalities that CinemAirSim provides. 
+The files are placed in the "Demo" folder of the root folder of the main branch.
+
+0. Open a terminal and check if a minimum version 3.10.0 of CMake is installed:
+	```console	
+		cmake -version
+	```
+0.1 Otherwise, follow this tutorial to update/install it: https://cgold.readthedocs.io/en/latest/first-step/installation.html
+
+To test the demo, follow the next steps:
+
+1. Download the Demo folder and place somwhere in your  computer.
+2. Uncomment the 5th line of the file CMakeLists.txt file and replace the AirSim root folder path by yout local AirSim installation folder.
+3. Open the terminal, go to the Demo folder on your computer and run the following commands:
+	```console
+		mkdir build
+		cd build
+		cmake ..
+		cmake --build .
+	```
+Now, the program is compiled. 
+
+4. Open Unreal Editor and run the project in which CinemAirSim is installed
+5. Inside the build folder of step 3, run this command to start the shell and start the demo:
+	```console
+		./cinemairsim_demo
+	```
 
 ## EXTRA1.
 In my particular case, the build.sh from the native installation for Linux did not work. To make it work:
