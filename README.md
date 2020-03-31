@@ -79,8 +79,8 @@ This work can be cited as:
 ```
 ### Demo
 
-A minimum version of cA Demo shell is provided to test all the new functionalities that CinemAirSim provides. 
-The files are placed in the "Demo" folder of the root folder of the main branch.
+A demo shell is provided to test the new functionalities of CinemAirSim. 
+The required files are placed in the "Demo" folder.
 
 0. Open a terminal and check if a minimum version 3.10.0 of CMake is installed:
 	```console	
@@ -90,9 +90,9 @@ The files are placed in the "Demo" folder of the root folder of the main branch.
 
 To test the demo, follow the next steps:
 
-1. Download the Demo folder and place somwhere in your  computer.
+1. Download the Demo folder and place somewhere in your  computer.
 2. Uncomment the 5th line of the file CMakeLists.txt file and replace the AirSim root folder path by yout local AirSim installation folder.
-3. Open the terminal, go to the Demo folder on your computer and run the following commands:
+3. Open the terminal, navigate to the Demo folder on your computer and run the following commands:
 	```console
 		mkdir build
 		cd build
