@@ -4,10 +4,12 @@ An AddOn for AirSim that includes all the tools to integrate a cinema oriented c
 
 ## Steps to add the plugin:
 
-1. Follow the instructions of https://microsoft.github.io/AirSim/build_linux/ till Step 3.3
-2. Copy/Replace the AirSim folder of this repo with the AirSim folder of the root repository to the  and replace all files that are asked to be replaced
-3. Follow the first step from Step 3.4. If this step does not work, go to step EXTRA1.
-4. Once it is compiled, follow instructions of https://microsoft.github.io/AirSim/docs/unreal_custenv/#note-for-linux-users to integrate AirSim in your existing project or just open the project "Blocks" from the folder /AirSim/Unreal/Environments/Blocks to start using the Cinematographic plugin of AirSim.
+1. Follow the instructions of https://microsoft.github.io/AirSim/build_linux/:
+	1.1. Download Unreal Engine and build it
+	1.2. Download AirSim to the lastest version and wait to build it
+2. Copy/Replace the AirSim folder of this repo with the AirSim folder of the root repository to the and replace all files that are asked to be replaced
+3. Build AirSim once the CinemAirSim files have been copied as stated in https://microsoft.github.io/AirSim/build_linux/ (setup.sh, build.sh)
+4. Once it is compiled, follow instructions of https://microsoft.github.io/AirSim/unreal_custenv/#note-for-linux-users to integrate AirSim in your existing project or just open the project "Blocks" from the folder /AirSim/Unreal/Environments/Blocks to start enjoying the Cinematographic plugin of AirSim.
 
 ## Examples
 
