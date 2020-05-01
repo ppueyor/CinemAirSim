@@ -23,7 +23,7 @@ public:
     }
 
     //this method is called at every render tick when we want to transfer state from
-    //physics engine to render engine. As physics engine is halted while
+    //physics engine to render engine. As physics engine is halted while 
     //this happens, this method should do minimal processing
     virtual void updateRenderedState(float dt)
     {
@@ -48,7 +48,7 @@ public:
     virtual std::vector<ImageCaptureBase::ImageResponse> getImages(const std::vector<ImageCaptureBase::ImageRequest>& request) const = 0;
     virtual std::vector<uint8_t> getImage(const std::string& camera_name, ImageCaptureBase::ImageType image_type) const = 0;
 
-    //AddOn methods
+    //CinemAirSim methods
     virtual std::vector<std::string> getPresetLensSettings();
     virtual void setPresetLensSettings(std::string);
     virtual std::vector<std::string> getPresetFilmbackSettings();
@@ -64,7 +64,7 @@ public:
     virtual void setFocusAperture(float focus_aperture);
     virtual void enableFocusPlane(bool enable);
     virtual std::string getCurrentFieldOfView();
-    //end AddOn
+    //end CinemAirSim methods
 
     virtual Pose getPose() const = 0;
     virtual void setPose(const Pose& pose, bool ignore_collision) = 0;
@@ -73,6 +73,7 @@ public:
 
     virtual CameraInfo getCameraInfo(const std::string& camera_name) const = 0;
     virtual void setCameraOrientation(const std::string& camera_name, const Quaternionr& orientation) = 0;
+    virtual void setCameraFoV(const std::string& camera_name, float fov_degrees) = 0;
 
     virtual CollisionInfo getCollisionInfo() const = 0;
     virtual int getRemoteControlID() const = 0; //which RC to use, 0 is first one, -1 means disable RC (use keyborad)
@@ -80,6 +81,7 @@ public:
     virtual std::string getVehicleName() const = 0;
     virtual std::string getRecordFileLine(bool is_header_line) const = 0;
     virtual void toggleTrace() = 0;
+    virtual void setTraceLine(const std::vector<float>& color_rgba, float thickness) = 0;
 
     //use pointer here because of derived classes for VehicleSetting
     const AirSimSettings::VehicleSetting* getVehicleSetting() const

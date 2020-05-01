@@ -36,7 +36,7 @@ public: //types
     typedef msr::airlib::ImageCaptureBase ImageCaptureBase;
 
     struct Params {
-        APawn* pawn;
+        APawn* pawn; 
         const NedTransform* global_transform;
         PawnEvents* pawn_events;
         common_utils::UniqueValueMap<std::string, APIPCamera*> cameras;
@@ -50,11 +50,11 @@ public: //types
         }
 
         Params(APawn* pawn_val, const NedTransform* global_transform_val, PawnEvents* pawn_events_val,
-               const common_utils::UniqueValueMap<std::string, APIPCamera*> cameras_val, UClass* pip_camera_class_val,
-               UParticleSystem* collision_display_template_val, const msr::airlib::GeoPoint home_geopoint_val,
-               std::string vehicle_name_val)
+            const common_utils::UniqueValueMap<std::string, APIPCamera*> cameras_val, UClass* pip_camera_class_val,
+            UParticleSystem* collision_display_template_val, const msr::airlib::GeoPoint home_geopoint_val,
+            std::string vehicle_name_val)
         {
-            pawn = pawn_val;
+            pawn = pawn_val; 
             global_transform = global_transform_val;
             pawn_events = pawn_events_val;
             cameras = cameras_val;
@@ -74,27 +74,8 @@ public: //implementation of VehicleSimApiBase
     virtual const UnrealImageCapture* getImageCapture() const override;
     virtual std::vector<ImageCaptureBase::ImageResponse> getImages(const std::vector<ImageCaptureBase::ImageRequest>& request) const override;
     virtual std::vector<uint8_t> getImage(const std::string& camera_name, ImageCaptureBase::ImageType image_type) const override;
-    virtual Pose getPose() const override;
-    virtual void setPose(const Pose& pose, bool ignore_collision) override;
-    virtual msr::airlib::CameraInfo getCameraInfo(const std::string& camera_name) const override;
-    virtual void setCameraOrientation(const std::string& camera_name, const Quaternionr& orientation) override;
-    virtual CollisionInfo getCollisionInfo() const override;
-    virtual int getRemoteControlID() const override;
-    virtual msr::airlib::RCData getRCData() const override;
-    virtual std::string getVehicleName() const override
-    {
-        return params_.vehicle_name;
-    }
-    virtual void toggleTrace() override;
 
-    virtual void updateRenderedState(float dt) override;
-    virtual void updateRendering(float dt) override;
-    virtual const msr::airlib::Kinematics::State* getGroundTruthKinematics() const override;
-    virtual const msr::airlib::Environment* getGroundTruthEnvironment() const override;
-    virtual std::string getRecordFileLine(bool is_header_line) const override;
-    virtual void reportState(msr::airlib::StateReporter& reporter) override;
-
-    //Addon methods
+    //CinemAirSim methods
     virtual std::vector<std::string> getPresetLensSettings() override;
     virtual void setPresetLensSettings(std::string preset) override;
     virtual std::vector<std::string> getPresetFilmbackSettings() override;
@@ -110,7 +91,29 @@ public: //implementation of VehicleSimApiBase
     virtual void setFocusAperture(float focus_aperture) override;
     virtual void enableFocusPlane(bool enable) override;
     virtual std::string getCurrentFieldOfView() override;
-    //end AddOn
+    //end CinemAirSim methods
+
+    virtual Pose getPose() const override;
+    virtual void setPose(const Pose& pose, bool ignore_collision) override;
+    virtual msr::airlib::CameraInfo getCameraInfo(const std::string& camera_name) const override;
+    virtual void setCameraOrientation(const std::string& camera_name, const Quaternionr& orientation) override;
+    virtual void setCameraFoV(const std::string& camera_name, float fov_degrees) override;
+    virtual CollisionInfo getCollisionInfo() const override;
+    virtual int getRemoteControlID() const override;
+    virtual msr::airlib::RCData getRCData() const override;
+    virtual std::string getVehicleName() const override
+    {
+        return params_.vehicle_name;
+    }
+    virtual void toggleTrace() override;
+    virtual void setTraceLine(const std::vector<float>& color_rgba, float thickness) override;
+
+    virtual void updateRenderedState(float dt) override;
+    virtual void updateRendering(float dt) override;
+    virtual const msr::airlib::Kinematics::State* getGroundTruthKinematics() const override;
+    virtual const msr::airlib::Environment* getGroundTruthEnvironment() const override;
+    virtual std::string getRecordFileLine(bool is_header_line) const override;
+    virtual void reportState(msr::airlib::StateReporter& reporter) override;
 
 protected: //additional interface for derived class
     virtual void pawnTick(float dt);
@@ -153,7 +156,7 @@ private: //methods
     void createCamerasFromSettings();
     //on collision, pawns should update this
     void onCollision(class UPrimitiveComponent* MyComp, class AActor* Other, class UPrimitiveComponent* OtherComp,
-                     bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit);
+        bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit);
 
     //these methods are for future usage
     void plot(std::istream& s, FColor color, const Vector3r& offset);
@@ -189,7 +192,7 @@ private: //vars
         FVector last_debug_position;
         FVector current_position;
         FVector current_debug_position;
-        FVector debug_position_offset;
+        FVector debug_position_offset;        
         bool tracing_enabled;
         bool collisions_enabled;
         bool passthrough_enabled;
@@ -206,4 +209,7 @@ private: //vars
 
     std::unique_ptr<msr::airlib::Kinematics> kinematics_;
     std::unique_ptr<msr::airlib::Environment> environment_;
+
+    FColor trace_color_ = FColor::Purple;
+    float trace_thickness_ = 3.0f;
 };

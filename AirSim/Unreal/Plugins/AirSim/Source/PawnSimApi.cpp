@@ -207,6 +207,84 @@ std::vector<uint8_t> PawnSimApi::getImage(const std::string& camera_name, ImageC
         return std::vector<uint8_t>();
 }
 
+//CinemAirSim Methods
+std::vector<std::string> PawnSimApi::getPresetLensSettings()
+{
+   return getCamera("")->getPresetLensSettings();
+}
+
+
+void PawnSimApi::setPresetLensSettings(std::string preset)
+{
+   return getCamera("")->setPresetLensSettings(preset);
+}
+
+std::vector<std::string> PawnSimApi::getPresetFilmbackSettings()
+{
+   return getCamera("")->getPresetFilmbackSettings();
+}
+
+void PawnSimApi::setPresetFilmbackSettings(std::string preset)
+{
+   return getCamera("")->setPresetFilmbackSettings(preset);
+}
+
+std::string PawnSimApi::getFilmbackSettings()
+{
+   return getCamera("")->getFilmbackSettings();
+}
+
+float PawnSimApi::setFilmbackSettings(float width, float height)
+{
+   return getCamera("")->setFilmbackSettings(width, height);
+}
+
+float PawnSimApi::getFocalLength()
+{
+   return getCamera("")->getFocalLength();
+}
+
+void PawnSimApi::setFocalLength(float focal_length)
+{
+   return getCamera("")->setFocalLength(focal_length);
+}
+
+void PawnSimApi::enableManualFocus(bool enable)
+{
+   return getCamera("")->enableManualFocus(enable);
+}
+
+float PawnSimApi::getFocusDistance()
+{
+   return getCamera("")->getFocusDistance();
+}
+
+void PawnSimApi::setFocusDistance(float focus_distance)
+{
+   return getCamera("")->setFocusDistance(focus_distance);
+}
+
+float PawnSimApi::getFocusAperture()
+{
+   return getCamera("")->getFocusAperture();
+}
+
+void PawnSimApi::setFocusAperture(float focus_aperture)
+{
+   return getCamera("")->setFocusAperture(focus_aperture);
+}
+
+void PawnSimApi::enableFocusPlane(bool enable)
+{
+   return getCamera("")->enableFocusPlane(enable);
+}
+
+std::string PawnSimApi::getCurrentFieldOfView()
+{
+   return getCamera("")->getCurrentFieldOfView();
+}
+//End CinemAirSim Methods
+
 void PawnSimApi::setRCForceFeedback(float rumble_strength, float auto_center)
 {
     if (joystick_state_.is_initialized) {
@@ -317,86 +395,6 @@ void PawnSimApi::reportState(msr::airlib::StateReporter& reporter)
     reporter.writeValue("unreal pos", Vector3r(unrealPosition.X, unrealPosition.Y, unrealPosition.Z));
 }
 
-//AddOn Methods
-std::vector<std::string> PawnSimApi::getPresetLensSettings()
-{
-   return getCamera("")->getPresetLensSettings();
-}
-
-
-void PawnSimApi::setPresetLensSettings(std::string preset)
-{
-   return getCamera("")->setPresetLensSettings(preset);
-}
-
-std::vector<std::string> PawnSimApi::getPresetFilmbackSettings()
-{
-   return getCamera("")->getPresetFilmbackSettings();
-}
-
-void PawnSimApi::setPresetFilmbackSettings(std::string preset)
-{
-   return getCamera("")->setPresetFilmbackSettings(preset);
-}
-
-std::string PawnSimApi::getFilmbackSettings()
-{
-   return getCamera("")->getFilmbackSettings();
-}
-
-float PawnSimApi::setFilmbackSettings(float width, float height)
-{
-   return getCamera("")->setFilmbackSettings(width, height);
-}
-
-float PawnSimApi::getFocalLength()
-{
-   return getCamera("")->getFocalLength();
-}
-
-void PawnSimApi::setFocalLength(float focal_length)
-{
-   return getCamera("")->setFocalLength(focal_length);
-}
-
-void PawnSimApi::enableManualFocus(bool enable)
-{
-   return getCamera("")->enableManualFocus(enable);
-}
-
-float PawnSimApi::getFocusDistance()
-{
-   return getCamera("")->getFocusDistance();
-}
-
-void PawnSimApi::setFocusDistance(float focus_distance)
-{
-   return getCamera("")->setFocusDistance(focus_distance);
-}
-
-float PawnSimApi::getFocusAperture()
-{
-   return getCamera("")->getFocusAperture();
-}
-
-void PawnSimApi::setFocusAperture(float focus_aperture)
-{
-   return getCamera("")->setFocusAperture(focus_aperture);
-}
-
-void PawnSimApi::enableFocusPlane(bool enable)
-{
-   return getCamera("")->enableFocusPlane(enable);
-}
-
-std::string PawnSimApi::getCurrentFieldOfView()
-{
-   return getCamera("")->getCurrentFieldOfView();
-}
-//AddOn Methods
-
-
-
 //void playBack()
 //{
     //if (params_.pawn->GetRootPrimitiveComponent()->IsAnySimulatingPhysics()) {
@@ -441,6 +439,12 @@ void PawnSimApi::toggleTrace()
         state_.debug_position_offset = state_.current_debug_position - state_.current_position;
         state_.last_debug_position = state_.last_position;
     }
+}
+
+void PawnSimApi::setTraceLine(const std::vector<float>& color_rgba, float thickness) {
+    FLinearColor color {color_rgba[0], color_rgba[1], color_rgba[2], color_rgba[3]};
+    trace_color_ = color.ToFColor(true);
+    trace_thickness_ = thickness;
 }
 
 void PawnSimApi::allowPassthroughToggleInput()
@@ -492,6 +496,14 @@ void PawnSimApi::setCameraOrientation(const std::string& camera_name, const msr:
     }, true);
 }
 
+void PawnSimApi::setCameraFoV(const std::string& camera_name, float fov_degrees)
+{
+    UAirBlueprintLib::RunCommandOnGameThread([this, camera_name, fov_degrees]() {
+        APIPCamera* camera = getCamera(camera_name);
+        camera->setCameraFoV(fov_degrees);
+    }, true);
+}
+
 //parameters in NED frame
 PawnSimApi::Pose PawnSimApi::getPose() const
 {
@@ -535,7 +547,7 @@ void PawnSimApi::setPoseInternal(const Pose& pose, bool ignore_collision)
         params_.pawn->SetActorLocationAndRotation(position, orientation, true);
 
     if (state_.tracing_enabled && (state_.last_position - position).SizeSquared() > 0.25) {
-        DrawDebugLine(params_.pawn->GetWorld(), state_.last_position, position, FColor::Purple, true, -1.0F, 0, 3.0F);
+        DrawDebugLine(params_.pawn->GetWorld(), state_.last_position, position, trace_color_, true, -1.0F, 0, trace_thickness_);
         state_.last_position = position;
     }
     else if (!state_.tracing_enabled) {
@@ -576,7 +588,7 @@ void PawnSimApi::updateKinematics(float dt)
     auto next_kinematics = kinematics_->getState();
 
     next_kinematics.pose = getPose();
-    next_kinematics.twist.linear = getNedTransform().toLocalNed(getPawn()->GetVelocity());
+    next_kinematics.twist.linear = getNedTransform().toLocalNedVelocity(getPawn()->GetVelocity());
     next_kinematics.twist.angular = msr::airlib::VectorMath::toAngularVelocity(
         kinematics_->getPose().orientation, next_kinematics.pose.orientation, dt);
 
