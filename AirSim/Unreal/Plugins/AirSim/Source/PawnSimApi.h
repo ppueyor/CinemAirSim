@@ -77,6 +77,7 @@ public: //implementation of VehicleSimApiBase
 
     //CinemAirSim methods
     virtual std::vector<std::string> getPresetLensSettings() override;
+    virtual std::string getLensSettings() override;
     virtual void setPresetLensSettings(std::string preset) override;
     virtual std::vector<std::string> getPresetFilmbackSettings() override;
     virtual void setPresetFilmbackSettings(std::string preset) override;

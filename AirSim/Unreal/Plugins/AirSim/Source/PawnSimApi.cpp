@@ -213,6 +213,10 @@ std::vector<std::string> PawnSimApi::getPresetLensSettings()
    return getCamera("")->getPresetLensSettings();
 }
 
+std::string PawnSimApi::getLensSettings()
+{
+   return getCamera("")->getLensSettings();
+}
 
 void PawnSimApi::setPresetLensSettings(std::string preset)
 {

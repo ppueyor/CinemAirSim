@@ -50,6 +50,7 @@ public:
 
     //CinemAirSim methods
     virtual std::vector<std::string> getPresetLensSettings();
+    virtual std::string getLensSettings();
     virtual void setPresetLensSettings(std::string);
     virtual std::vector<std::string> getPresetFilmbackSettings();
     virtual void setPresetFilmbackSettings(std::string);

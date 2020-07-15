@@ -254,6 +254,13 @@ std::vector<std::string> RpcLibClientBase::simGetPresetLensSettings(const std::s
     return result;
 }
 
+std::string RpcLibClientBase::simGetLensSettings(const std::string &vehicle_name)
+{
+    std::string result = pimpl_->client.call("simGetLensSettings", vehicle_name).as<std::string>();
+    return result;
+}
+
+
 void RpcLibClientBase::simSetPresetLensSettings(const std::string &preset_lens_settings, const std::string &vehicle_name)
 {
     pimpl_->client.call("simSetPresetLensSettings", preset_lens_settings, vehicle_name);

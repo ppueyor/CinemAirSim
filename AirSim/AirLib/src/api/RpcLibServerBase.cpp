@@ -146,6 +146,11 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
         return result;
     });
 
+    pimpl_->server.bind("simGetLensSettings", [&](const std::string& vehicle_name) -> string {
+        auto result = getVehicleSimApi(vehicle_name)->getLensSettings();
+        return result;
+    });
+
     pimpl_->server.bind("simSetPresetLensSettings", [&](const std::string preset_lens_settings, const std::string& vehicle_name) -> void {
         getVehicleSimApi(vehicle_name)->setPresetLensSettings(preset_lens_settings);
     });

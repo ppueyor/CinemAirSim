@@ -297,11 +297,14 @@ void APIPCamera::setupCameraFromSettings(const APIPCamera::CameraSetting& camera
                     image_type_to_pixel_format_map_[image_type], capture_setting, ned_transform); 
 
             setNoiseMaterial(image_type, captures_[image_type], captures_[image_type]->PostProcessSettings, noise_setting);
+            CopyCameraSettingsToSceneCapture(camera_,  captures_[image_type]);
         }
         else { //camera component
             updateCameraSetting(camera_, capture_setting, ned_transform);
 
             setNoiseMaterial(image_type, camera_, camera_->PostProcessSettings, noise_setting);
+
+            CopyCameraSettingsToAllSceneCapture(camera_);
         }
     }
 }
@@ -525,10 +528,34 @@ std::vector<std::string> APIPCamera::getPresetLensSettings()
     return vector;
 }
 
+std::string APIPCamera::getLensSettings()
+{
+    std::vector<std::string> vector;
+
+    FCameraLensSettings current_lens_params =  camera_->LensSettings;
+
+    std::ostringstream ss;
+
+    FString lens_preset_name = camera_->GetLensPresetName();
+    std::string name = (TCHAR_TO_UTF8(*lens_preset_name));
+
+    ss << "Name: " << name;
+    ss  << ";\n\t MinFocalLength: " << current_lens_params.MinFocalLength;
+    ss  << "; \t MaxFocalLength: " << current_lens_params.MaxFocalLength;
+    ss << "\n\t Min FStop: " << current_lens_params.MinFStop;
+    ss << "; \t Max Fstop: " << current_lens_params.MaxFStop;
+    ss << "\n\t Diaphragm Blade Count: " << current_lens_params.DiaphragmBladeCount;
+    ss << "\n\t Minimum focus distance: " << current_lens_params.MinimumFocusDistance;
+    std::string final_string(ss.str());
+
+    return final_string;
+}
+
 void APIPCamera::setPresetLensSettings(std::string preset_string)
 {
     FString preset(preset_string.c_str());
     camera_->SetLensPresetByName(preset);
+    CopyCameraSettingsToAllSceneCapture(camera_);
 }
 
 std::vector<std::string> APIPCamera::getPresetFilmbackSettings()
@@ -553,6 +580,7 @@ void APIPCamera::setPresetFilmbackSettings(std::string preset_string)
 {
     FString preset(preset_string.c_str());
     camera_->SetFilmbackPresetByName(preset);
+    CopyCameraSettingsToAllSceneCapture(camera_);
 }
 
 std::string APIPCamera::getFilmbackSettings()
@@ -574,6 +602,8 @@ float APIPCamera::setFilmbackSettings(float sensor_width, float sensor_height)
     camera_->Filmback.SensorWidth = sensor_width;
     camera_->Filmback.SensorHeight = sensor_height;
 
+    CopyCameraSettingsToAllSceneCapture(camera_);
+
     return camera_->Filmback.SensorAspectRatio;
 }
 
@@ -585,6 +615,7 @@ float APIPCamera::getFocalLength()
 void APIPCamera::setFocalLength(float focal_length)
 {
     camera_->CurrentFocalLength = focal_length;
+    CopyCameraSettingsToAllSceneCapture(camera_);
 }
 
 void APIPCamera::enableManualFocus(bool enable)  {
@@ -594,6 +625,7 @@ void APIPCamera::enableManualFocus(bool enable)  {
     else{
         camera_->FocusSettings.FocusMethod = ECameraFocusMethod::None;
     }
+    CopyCameraSettingsToAllSceneCapture(camera_);
 }
 
 float APIPCamera::getFocusDistance()
@@ -604,6 +636,7 @@ float APIPCamera::getFocusDistance()
 void APIPCamera::setFocusDistance(float focus_distance)
 {
     camera_->FocusSettings.ManualFocusDistance = focus_distance;
+    CopyCameraSettingsToAllSceneCapture(camera_);
 }
 
 float APIPCamera::getFocusAperture()
@@ -613,6 +646,7 @@ float APIPCamera::getFocusAperture()
 
 void APIPCamera::setFocusAperture(float focus_aperture)  {
     camera_->CurrentAperture = focus_aperture;
+    CopyCameraSettingsToAllSceneCapture(camera_);
 }
 
 void APIPCamera::enableFocusPlane(bool enable)  {
@@ -623,6 +657,40 @@ std::string APIPCamera::getCurrentFieldOfView()  {
     std::ostringstream ss;
     ss << "Current Field Of View:\n\tHorizontal Field Of View: " << camera_->GetHorizontalFieldOfView() << ";\n\t Vertical Field Of View: " << camera_->GetVerticalFieldOfView();
     return ss.str();
+}
+
+
+void APIPCamera::CopyCameraSettingsToAllSceneCapture(UCameraComponent* camera_)
+{
+    int image_count = static_cast<int>(Utils::toNumeric(ImageType::Count));
+    for (int image_type = image_count - 1; image_type >= 0; image_type--) {
+        if (image_type >= 0) { //scene capture components
+            CopyCameraSettingsToSceneCapture(camera_, captures_[image_type]);
+        }
+    }
+}
+
+void APIPCamera::CopyCameraSettingsToSceneCapture(UCameraComponent* Src, USceneCaptureComponent2D* Dst)
+{
+    if (Src && Dst)
+    {
+        Dst->SetWorldLocationAndRotation(Src->GetComponentLocation(), Src->GetComponentRotation());
+        Dst->FOVAngle = Src->FieldOfView;
+
+        FMinimalViewInfo CameraViewInfo;
+        Src->GetCameraView(/*DeltaTime =*/0.0f, CameraViewInfo);
+
+        const FPostProcessSettings& SrcPPSettings = CameraViewInfo.PostProcessSettings;
+        FPostProcessSettings& DstPPSettings = Dst->PostProcessSettings;
+
+        FWeightedBlendables DstWeightedBlendables = DstPPSettings.WeightedBlendables;
+
+        // Copy all of the post processing settings
+        DstPPSettings = SrcPPSettings;
+
+        // But restore the original blendables
+        DstPPSettings.WeightedBlendables = DstWeightedBlendables;
+    }
 }
 
 //end CinemAirSim methods

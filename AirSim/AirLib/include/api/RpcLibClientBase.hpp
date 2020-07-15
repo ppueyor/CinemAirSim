@@ -95,6 +95,7 @@ public:
 
     //CinemAirSim methods
     std::vector<std::string>  simGetPresetLensSettings(const std::string& vehicle_name = "");
+    std::string  simGetLensSettings(const std::string& vehicle_name = "");
     void simSetPresetLensSettings(const std::string& preset_lens_settings="", const std::string& vehicle_name = "");
     std::vector<std::string>  simGetPresetFilmbackSettings(const std::string& vehicle_name = "");
     void simSetPresetFilmbackSettings(const std::string& preset_filmback_settings="", const std::string& vehicle_name = "");
