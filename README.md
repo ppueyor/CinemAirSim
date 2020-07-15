@@ -108,6 +108,11 @@ Now, the program is compiled.
 	```console
 		./cinemairsim_demo
 	```
+	
+### Experiments
+
+The maps and meshes of the experiments are too heavy (around 2Gb each) to be uploaded to the repo. If you need them, please contact ppueyor@unizar.es and we will kindly share them with you.
+	```
 
 ## EXTRA1.
 In my particular case, the build.sh from the native installation for Linux did not work. To make it work:
