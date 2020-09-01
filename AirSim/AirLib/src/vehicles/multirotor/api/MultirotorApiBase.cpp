@@ -288,6 +288,7 @@ bool MultirotorApiBase::moveOnPath(const vector<Vector3r>& path, float velocity,
             return false;
 
         /*  Below, P is previous position on path, N is next goal and C is our current position.
+
         N
         ^
         |
@@ -298,15 +299,20 @@ bool MultirotorApiBase::moveOnPath(const vector<Vector3r>& path, float velocity,
         | /
         |/
         P
+
         Note that PC could be at any angle relative to PN, including 0 or -ve. We increase lookahead distance
         by the amount of |PC|. For this, we project PC on to PN to get vector PC' and length of
         CC'is our adaptive lookahead error by which we will increase lookahead distance. 
+
         For next iteration, we first update our current position by goal_dist and then
         set next goal by the amount lookahead + lookahead_error.
+
         We need to take care of following cases:
+
         1. |PN| == 0 => lookahead_error = |PC|, goal_dist = 0
         2. |PC| == 0 => lookahead_error = 0, goal_dist = 0
         3. PC in opposite direction => lookahead_error = |PC|, goal_dist = 0
+
         One good test case is if C just keeps moving perpendicular to the path (instead of along the path).
         In that case, we expect next goal to come up and down by the amount of lookahead_error. However
         under no circumstances we should go back on the path (i.e. current pos on path can only move forward).

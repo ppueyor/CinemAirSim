@@ -247,8 +247,12 @@ void APIPCamera::setCameraTypeEnabled(ImageType type, bool enabled)
     enableCaptureComponent(type, enabled);
 }
 
-void APIPCamera::setCameraOrientation(const FRotator& rotator)
+void APIPCamera::setCameraPose(const FTransform& pose)
 {
+    FVector position = pose.GetLocation();
+    this->SetActorRelativeLocation(pose.GetLocation());
+
+    FRotator rotator = pose.GetRotation().Rotator();
     if (gimbal_stabilization_ > 0) {
         gimbald_rotator_.Pitch = rotator.Pitch;
         gimbald_rotator_.Roll = rotator.Roll;
@@ -289,28 +293,46 @@ void APIPCamera::setupCameraFromSettings(const APIPCamera::CameraSetting& camera
         const auto& noise_setting = camera_setting.noise_settings.at(image_type);
 
         if (image_type >= 0) { //scene capture components
-            if (image_type==0 || image_type==5 || image_type==6 || image_type==7)
-                updateCaptureComponentSetting(captures_[image_type], render_targets_[image_type], false, 
-                    image_type_to_pixel_format_map_[image_type], capture_setting, ned_transform);
-            else
-                updateCaptureComponentSetting(captures_[image_type], render_targets_[image_type], true, 
-                    image_type_to_pixel_format_map_[image_type], capture_setting, ned_transform); 
+            switch (Utils::toEnum<ImageType>(image_type)) {
+                case ImageType::Scene:
+                case ImageType::Infrared:
+                    updateCaptureComponentSetting(captures_[image_type], render_targets_[image_type], 
+                        false, image_type_to_pixel_format_map_[image_type], capture_setting, ned_transform, 
+                        false);
+                    break;
+
+                case ImageType::Segmentation:
+                case ImageType::SurfaceNormals:                
+                    updateCaptureComponentSetting(captures_[image_type], render_targets_[image_type], 
+                        true, image_type_to_pixel_format_map_[image_type], capture_setting, ned_transform, 
+                        true);
+                    break;
+
+                default:
+                    updateCaptureComponentSetting(captures_[image_type], render_targets_[image_type], 
+                        true, image_type_to_pixel_format_map_[image_type], capture_setting, ned_transform,
+                        false);
+                    break;
+            }
 
             setNoiseMaterial(image_type, captures_[image_type], captures_[image_type]->PostProcessSettings, noise_setting);
-            CopyCameraSettingsToSceneCapture(camera_,  captures_[image_type]);
+
+            CopyCameraSettingsToSceneCapture(camera_,  captures_[image_type]); //CinemAirSim
+
         }
         else { //camera component
             updateCameraSetting(camera_, capture_setting, ned_transform);
 
             setNoiseMaterial(image_type, camera_, camera_->PostProcessSettings, noise_setting);
 
-            CopyCameraSettingsToAllSceneCapture(camera_);
+            CopyCameraSettingsToAllSceneCapture(camera_); //CinemAirSim
         }
     }
 }
 
 void APIPCamera::updateCaptureComponentSetting(USceneCaptureComponent2D* capture, UTextureRenderTarget2D* render_target, 
-    bool auto_format, const EPixelFormat& pixel_format, const CaptureSetting& setting, const NedTransform& ned_transform)
+    bool auto_format, const EPixelFormat& pixel_format, const CaptureSetting& setting, const NedTransform& ned_transform,
+    bool force_linear_gamma)
 {
     if (auto_format)
     {
@@ -318,7 +340,7 @@ void APIPCamera::updateCaptureComponentSetting(USceneCaptureComponent2D* capture
     }
     else
     {
-        render_target->InitCustomFormat(setting.width, setting.height, pixel_format, false);
+        render_target->InitCustomFormat(setting.width, setting.height, pixel_format, force_linear_gamma);
     } 
 
     if (!std::isnan(setting.target_gamma))
@@ -508,6 +530,8 @@ void APIPCamera::onViewModeChanged(bool nodisplay)
     }
 }
 
+
+
 //CinemAirSim methods
 std::vector<std::string> APIPCamera::getPresetLensSettings()
 {
@@ -694,4 +718,3 @@ void APIPCamera::CopyCameraSettingsToSceneCapture(UCameraComponent* Src, USceneC
 }
 
 //end CinemAirSim methods
-

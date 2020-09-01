@@ -18,8 +18,7 @@
 
 
 UCLASS()
-//CinemAirSim
-class AIRSIM_API APIPCamera : public ACineCameraActor
+class AIRSIM_API APIPCamera : public ACineCameraActor //CinemAirSim
 {
     GENERATED_BODY()
     
@@ -29,8 +28,7 @@ public:
     typedef msr::airlib::AirSimSettings AirSimSettings;
     typedef AirSimSettings::CameraSetting CameraSetting;
 
-
-    APIPCamera(const FObjectInitializer& ObjectInitializer);
+    APIPCamera(const FObjectInitializer& ObjectInitializer); //CinemAirSim
 
     virtual void PostInitializeComponents() override;
     virtual void BeginPlay() override;
@@ -68,7 +66,7 @@ public:
     void setCameraTypeEnabled(ImageType type, bool enabled);
     bool getCameraTypeEnabled(ImageType type) const;
     void setupCameraFromSettings(const APIPCamera::CameraSetting& camera_setting, const NedTransform& ned_transform);
-    void setCameraOrientation(const FRotator& rotator);
+    void setCameraPose(const FTransform& pose);
     void setCameraFoV(float fov_degrees);
 
     msr::airlib::ProjectionMatrix getProjectionMatrix(const APIPCamera::ImageType image_type) const;
@@ -103,11 +101,13 @@ private: //methods
 
     static unsigned int imageTypeCount();
     void enableCaptureComponent(const ImageType type, bool is_enabled);
-    static void updateCaptureComponentSetting(USceneCaptureComponent2D* capture, UTextureRenderTarget2D* render_target, 
-        bool auto_format, const EPixelFormat& pixel_format, const CaptureSetting& setting, const NedTransform& ned_transform);
+    static void updateCaptureComponentSetting(USceneCaptureComponent2D* capture, UTextureRenderTarget2D* render_target,
+        bool auto_format, const EPixelFormat& pixel_format, const CaptureSetting& setting, const NedTransform& ned_transform,
+        bool force_linear_gamma);
     void setNoiseMaterial(int image_type, UObject* outer, FPostProcessSettings& obj, const NoiseSetting& settings);
     static void updateCameraPostProcessingSetting(FPostProcessSettings& obj, const CaptureSetting& setting);
 
     //CinemAirSim
     static void updateCameraSetting(UCineCameraComponent* camera, const CaptureSetting& setting, const NedTransform& ned_transform);
 };
+
