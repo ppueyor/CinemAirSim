@@ -343,7 +343,7 @@ std::string RpcLibClientBase::simGetCurrentFieldOfView(const std::string &vehicl
     std::string result = pimpl_->client.call("simGetCurrentFieldOfView", vehicle_name).as<std::string>();
     return result;
 }
-//End AddOn
+//End CinemAirSim
 
 vector<MeshPositionVertexBuffersResponse> RpcLibClientBase::simGetMeshPositionVertexBuffers()
 {
@@ -489,9 +489,26 @@ void RpcLibClientBase::simSetCameraPose(const std::string& camera_name, const Po
     pimpl_->client.call("simSetCameraPose", camera_name, RpcLibAdapatorsBase::Pose(pose), vehicle_name);
 }
 
+void RpcLibClientBase::simSetCameraOrientation(const std::string& camera_name, const Quaternionr& orientation, const std::string& vehicle_name)
+{
+    std::cout << "`simSetCameraOrientation` API has been upgraded to `simSetCameraPose`. Please update your code." << std::endl;
+    Pose pose{Vector3r::Zero(), orientation};
+    RpcLibClientBase::simSetCameraPose(camera_name, pose, vehicle_name);
+}
+
 void RpcLibClientBase::simSetCameraFov(const std::string& camera_name, float fov_degrees, const std::string& vehicle_name)
 {
     pimpl_->client.call("simSetCameraFov", camera_name, fov_degrees, vehicle_name);
+}
+
+void RpcLibClientBase::simSetDistortionParam(const std::string& camera_name, const std::string& param_name, float value, const std::string& vehicle_name)
+{
+    pimpl_->client.call("simSetDistortionParam", camera_name, param_name, value, vehicle_name);
+}
+
+std::vector<float> RpcLibClientBase::simGetDistortionParams(const std::string& camera_name, const std::string& vehicle_name)
+{
+    return pimpl_->client.call("simGetDistortionParams", camera_name, vehicle_name).as<std::vector<float>>();
 }
 
 msr::airlib::Kinematics::State RpcLibClientBase::simGetGroundTruthKinematics(const std::string& vehicle_name) const
@@ -502,10 +519,20 @@ msr::airlib::Environment::State RpcLibClientBase::simGetGroundTruthEnvironment(c
 {
     return pimpl_->client.call("simGetGroundTruthEnvironment", vehicle_name).as<RpcLibAdapatorsBase::EnvironmentState>().to();;
 }
+bool RpcLibClientBase::simCreateVoxelGrid(const msr::airlib::Vector3r& position, const int& x, const int& y, const int& z, const float& res, const std::string& output_file)
+{
+    return pimpl_->client.call("simCreateVoxelGrid", RpcLibAdapatorsBase::Vector3r(position), x, y, z, res, output_file).as<bool>();
+}
+
 
 void RpcLibClientBase::cancelLastTask(const std::string& vehicle_name)
 {
     pimpl_->client.call("cancelLastTask", vehicle_name);
+}
+
+bool RpcLibClientBase::simRunConsoleCommand(const std::string& command)
+{
+    return pimpl_->client.call("simRunConsoleCommand", command).as<bool>();
 }
 
 //return value of last task. It should be true if task completed without
@@ -533,6 +560,12 @@ void RpcLibClientBase::stopRecording()
 bool RpcLibClientBase::isRecording()
 {
     return pimpl_->client.call("isRecording").as<bool>();
+}
+
+void RpcLibClientBase::simSetWind(const Vector3r& wind) const
+{
+    RpcLibAdapatorsBase::Vector3r conv_wind(wind);
+    pimpl_->client.call("simSetWind", conv_wind);
 }
 
 void* RpcLibClientBase::getClient()

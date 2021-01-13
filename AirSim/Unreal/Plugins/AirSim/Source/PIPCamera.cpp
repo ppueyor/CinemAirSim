@@ -4,12 +4,12 @@
 #include "Camera/CameraComponent.h"
 #include "Engine/TextureRenderTarget2D.h"
 #include "Engine/World.h"
-#include "Materials/MaterialInstanceDynamic.h"
 #include "ImageUtils.h"
 
 #include <string>
 #include <exception>
 #include "AirBlueprintLib.h"
+
 
 //CinemAirSim
 APIPCamera::APIPCamera(const FObjectInitializer& ObjectInitializer)
@@ -25,6 +25,16 @@ APIPCamera::APIPCamera(const FObjectInitializer& ObjectInitializer)
         UAirBlueprintLib::LogMessageString("Cannot create noise material for the PIPCamera", 
             "", LogDebugLevel::Failure);
 
+    static ConstructorHelpers::FObjectFinder<UMaterial> dist_mat_finder(TEXT("Material'/AirSim/HUDAssets/CameraDistortion.CameraDistortion'"));
+    if (dist_mat_finder.Succeeded())
+    {
+        distortion_material_static_ = dist_mat_finder.Object;
+        distortion_param_collection_ = Cast<UMaterialParameterCollection>(StaticLoadObject(UMaterialParameterCollection::StaticClass(), NULL, TEXT("'/AirSim/HUDAssets/DistortionParams.DistortionParams'")));
+    }
+    else
+        UAirBlueprintLib::LogMessageString("Cannot create distortion material for the PIPCamera",
+            "", LogDebugLevel::Failure);
+
     PrimaryActorTick.bCanEverTick = true;
 
     image_type_to_pixel_format_map_.Add(0, EPixelFormat::PF_B8G8R8A8);
@@ -35,6 +45,7 @@ APIPCamera::APIPCamera(const FObjectInitializer& ObjectInitializer)
     image_type_to_pixel_format_map_.Add(5, EPixelFormat::PF_B8G8R8A8);
     image_type_to_pixel_format_map_.Add(6, EPixelFormat::PF_B8G8R8A8);
     image_type_to_pixel_format_map_.Add(7, EPixelFormat::PF_B8G8R8A8);
+
 }
 
 void APIPCamera::PostInitializeComponents()
@@ -69,6 +80,7 @@ void APIPCamera::BeginPlay()
     Super::BeginPlay();
 
     noise_materials_.AddZeroed(imageTypeCount() + 1);
+    distortion_materials_.AddZeroed(imageTypeCount() + 1);
 
     //by default all image types are disabled
     camera_type_enabled_.assign(imageTypeCount(), false);
@@ -85,10 +97,15 @@ void APIPCamera::BeginPlay()
     gimbal_stabilization_ = 0;
     gimbald_rotator_ = this->GetActorRotation();
     this->SetActorTickEnabled(false);
+
+    if (distortion_param_collection_)
+        distortion_param_instance_ = this->GetWorld()->GetParameterCollectionInstance(distortion_param_collection_);
 }
 
 msr::airlib::ProjectionMatrix APIPCamera::getProjectionMatrix(const APIPCamera::ImageType image_type) const
 {
+    msr::airlib::ProjectionMatrix mat;
+
     //TODO: avoid the need to override const cast here
     const_cast<APIPCamera*>(this)->setCameraTypeEnabled(image_type, true);
     const USceneCaptureComponent2D* capture = const_cast<APIPCamera*>(this)->getCaptureComponent(image_type, false);
@@ -164,18 +181,14 @@ msr::airlib::ProjectionMatrix APIPCamera::getProjectionMatrix(const APIPCamera::
         FMatrix projMatTransposeInAirSim = coordinateChangeTranspose * proj_mat_transpose;
 
         //Copy the result to an airlib::ProjectionMatrix while taking transpose.
-        msr::airlib::ProjectionMatrix mat;
         for (auto row = 0; row < 4; ++row)
             for (auto col = 0; col < 4; ++col)
                 mat.matrix[col][row] = projMatTransposeInAirSim.M[row][col];
-
-        return mat;
     }
-    else {
-        msr::airlib::ProjectionMatrix mat;
+    else
         mat.setTo(Utils::nan<float>());
-        return mat;
-    }
+
+    return mat;
 }
 
 void APIPCamera::Tick(float DeltaTime)
@@ -209,6 +222,18 @@ void APIPCamera::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
     noise_material_static_ = nullptr;
     noise_materials_.Empty();
+
+    if (distortion_materials_.Num()) {
+        for (unsigned int image_type = 0; image_type < imageTypeCount(); ++image_type) {
+            if (distortion_materials_[image_type + 1])
+                captures_[image_type]->PostProcessSettings.RemoveBlendable(distortion_materials_[image_type + 1]);
+        }
+        if (distortion_materials_[0])
+            camera_->PostProcessSettings.RemoveBlendable(distortion_materials_[0]);
+    }
+
+    distortion_material_static_ = nullptr;
+    distortion_materials_.Empty();
 
     for (unsigned int image_type = 0; image_type < imageTypeCount(); ++image_type) {
         //use final color for all calculations
@@ -314,7 +339,7 @@ void APIPCamera::setupCameraFromSettings(const APIPCamera::CameraSetting& camera
                         false);
                     break;
             }
-
+            setDistortionMaterial(image_type, captures_[image_type], captures_[image_type]->PostProcessSettings);
             setNoiseMaterial(image_type, captures_[image_type], captures_[image_type]->PostProcessSettings, noise_setting);
 
             CopyCameraSettingsToSceneCapture(camera_,  captures_[image_type]); //CinemAirSim
@@ -322,10 +347,11 @@ void APIPCamera::setupCameraFromSettings(const APIPCamera::CameraSetting& camera
         }
         else { //camera component
             updateCameraSetting(camera_, capture_setting, ned_transform);
-
+            setDistortionMaterial(image_type, camera_, camera_->PostProcessSettings);
             setNoiseMaterial(image_type, camera_, camera_->PostProcessSettings, noise_setting);
 
             CopyCameraSettingsToAllSceneCapture(camera_); //CinemAirSim
+
         }
     }
 }
@@ -431,30 +457,36 @@ void APIPCamera::updateCameraPostProcessingSetting(FPostProcessSettings& obj, co
     }
 }
 
+void APIPCamera::setDistortionMaterial(int image_type, UObject* outer, FPostProcessSettings& obj)
+{
+    UMaterialInstanceDynamic* distortion_material = UMaterialInstanceDynamic::Create(distortion_material_static_, outer);
+    distortion_materials_[image_type + 1] = distortion_material;
+    obj.AddBlendable(distortion_material, 1.0f);
+}
+
 void APIPCamera::setNoiseMaterial(int image_type, UObject* outer, FPostProcessSettings& obj, const NoiseSetting& settings)
 {
     if (!settings.Enabled)
         return;
 
-    UMaterialInstanceDynamic* noise_material_ = UMaterialInstanceDynamic::Create(noise_material_static_, outer);
-    noise_materials_[image_type + 1] = noise_material_;
+    UMaterialInstanceDynamic* noise_material = UMaterialInstanceDynamic::Create(noise_material_static_, outer);
+    noise_materials_[image_type + 1] = noise_material;
 
+    noise_material->SetScalarParameterValue("HorzWaveStrength", settings.HorzWaveStrength);
+    noise_material->SetScalarParameterValue("RandSpeed", settings.RandSpeed);
+    noise_material->SetScalarParameterValue("RandSize", settings.RandSize);
+    noise_material->SetScalarParameterValue("RandDensity", settings.RandDensity);
+    noise_material->SetScalarParameterValue("RandContrib", settings.RandContrib);
+    noise_material->SetScalarParameterValue("HorzWaveContrib", settings.HorzWaveContrib);
+    noise_material->SetScalarParameterValue("HorzWaveVertSize", settings.HorzWaveVertSize);
+    noise_material->SetScalarParameterValue("HorzWaveScreenSize", settings.HorzWaveScreenSize);
+    noise_material->SetScalarParameterValue("HorzNoiseLinesContrib", settings.HorzNoiseLinesContrib);
+    noise_material->SetScalarParameterValue("HorzNoiseLinesDensityY", settings.HorzNoiseLinesDensityY);
+    noise_material->SetScalarParameterValue("HorzNoiseLinesDensityXY", settings.HorzNoiseLinesDensityXY);
+    noise_material->SetScalarParameterValue("HorzDistortionStrength", settings.HorzDistortionStrength);
+    noise_material->SetScalarParameterValue("HorzDistortionContrib", settings.HorzDistortionContrib);
 
-    noise_material_->SetScalarParameterValue("HorzWaveStrength", settings.HorzWaveStrength);
-    noise_material_->SetScalarParameterValue("RandSpeed", settings.RandSpeed);
-    noise_material_->SetScalarParameterValue("RandSize", settings.RandSize);
-    noise_material_->SetScalarParameterValue("RandDensity", settings.RandDensity);
-    noise_material_->SetScalarParameterValue("RandContrib", settings.RandContrib);
-    noise_material_->SetScalarParameterValue("HorzWaveContrib", settings.HorzWaveContrib);
-    noise_material_->SetScalarParameterValue("HorzWaveVertSize", settings.HorzWaveVertSize);
-    noise_material_->SetScalarParameterValue("HorzWaveScreenSize", settings.HorzWaveScreenSize);
-    noise_material_->SetScalarParameterValue("HorzNoiseLinesContrib", settings.HorzNoiseLinesContrib);
-    noise_material_->SetScalarParameterValue("HorzNoiseLinesDensityY", settings.HorzNoiseLinesDensityY);
-    noise_material_->SetScalarParameterValue("HorzNoiseLinesDensityXY", settings.HorzNoiseLinesDensityXY);
-    noise_material_->SetScalarParameterValue("HorzDistortionStrength", settings.HorzDistortionStrength);
-    noise_material_->SetScalarParameterValue("HorzDistortionContrib", settings.HorzDistortionContrib);
-
-    obj.AddBlendable(noise_material_, 1.0f);
+    obj.AddBlendable(noise_material, 1.0f);
 }
 
 void APIPCamera::enableCaptureComponent(const APIPCamera::ImageType type, bool is_enabled)
@@ -718,3 +750,4 @@ void APIPCamera::CopyCameraSettingsToSceneCapture(UCameraComponent* Src, USceneC
 }
 
 //end CinemAirSim methods
+
