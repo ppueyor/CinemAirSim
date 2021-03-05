@@ -73,7 +73,7 @@ This work can be cited as:
 @article{pueyo2020cinemairsim,
   title={CinemAirSim: A Camera-Realistic Robotics Simulator for Cinematographic Purposes},
   author={Pueyo, Pablo and Cristofalo, Eric and Montijano, Eduardo and Schwager, Mac},
-  journal={2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  journal={2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
   pages={1186--1191},
   year={2020}
 }
