@@ -41,6 +41,7 @@ public:
     bool simIsPaused() const;
     void simPause(bool is_paused);
     void simContinueForTime(double seconds);
+    void simContinueForFrames(uint32_t frames);
 
     void simSetTimeOfDay(bool is_enabled, const string& start_datetime = "", bool is_start_datetime_dst = false,
         float celestial_clock_speed = 1, float update_interval_secs = 60, bool move_sun = true);
@@ -87,9 +88,6 @@ public:
     msr::airlib::MagnetometerBase::Output getMagnetometerData(const std::string& magnetometer_name = "", const std::string& vehicle_name = "") const;
     msr::airlib::GpsBase::Output getGpsData(const std::string& gps_name = "", const std::string& vehicle_name = "") const;
     msr::airlib::DistanceSensorData getDistanceSensorData(const std::string& distance_sensor_name = "", const std::string& vehicle_name = "") const;
-
-    // sensor omniscient APIs
-    vector<int> simGetLidarSegmentation(const std::string& lidar_name = "", const std::string& vehicle_name = "") const;
 
     Pose simGetVehiclePose(const std::string& vehicle_name = "") const;
     void simSetVehiclePose(const Pose& pose, bool ignore_collision, const std::string& vehicle_name = "");

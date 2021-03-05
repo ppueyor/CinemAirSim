@@ -343,15 +343,14 @@ void APIPCamera::setupCameraFromSettings(const APIPCamera::CameraSetting& camera
             setNoiseMaterial(image_type, captures_[image_type], captures_[image_type]->PostProcessSettings, noise_setting);
 
             CopyCameraSettingsToSceneCapture(camera_,  captures_[image_type]); //CinemAirSim
-
         }
         else { //camera component
             updateCameraSetting(camera_, capture_setting, ned_transform);
             setDistortionMaterial(image_type, camera_, camera_->PostProcessSettings);
             setNoiseMaterial(image_type, camera_, camera_->PostProcessSettings, noise_setting);
 
-            CopyCameraSettingsToAllSceneCapture(camera_); //CinemAirSim
 
+            CopyCameraSettingsToAllSceneCapture(camera_); //CinemAirSim
         }
     }
 }
@@ -382,7 +381,6 @@ void APIPCamera::updateCaptureComponentSetting(USceneCaptureComponent2D* capture
     updateCameraPostProcessingSetting(capture->PostProcessSettings, setting);
 }
 
-//CinemAirSim
 void APIPCamera::updateCameraSetting(UCineCameraComponent* camera, const CaptureSetting& setting, const NedTransform& ned_transform)
 {
     //if (!std::isnan(setting.target_gamma))
@@ -679,7 +677,7 @@ void APIPCamera::enableManualFocus(bool enable)  {
         camera_->FocusSettings.FocusMethod = ECameraFocusMethod::Manual;
     }
     else{
-        camera_->FocusSettings.FocusMethod = ECameraFocusMethod::None;
+        camera_->FocusSettings.FocusMethod = ECameraFocusMethod::Disable;
     }
     CopyCameraSettingsToAllSceneCapture(camera_);
 }

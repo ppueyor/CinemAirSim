@@ -66,7 +66,7 @@ public:
     void CopyCameraSettingsToAllSceneCapture(UCameraComponent* camera_);
     void CopyCameraSettingsToSceneCapture(UCameraComponent* Src, USceneCaptureComponent2D* Dst);
     //end CinemAirSim methods
-
+    
     void setCameraTypeEnabled(ImageType type, bool enabled);
     bool getCameraTypeEnabled(ImageType type) const;
     void setupCameraFromSettings(const APIPCamera::CameraSetting& camera_setting, const NedTransform& ned_transform);
@@ -115,8 +115,7 @@ private: //methods
         bool force_linear_gamma);
     void setNoiseMaterial(int image_type, UObject* outer, FPostProcessSettings& obj, const NoiseSetting& settings);
     void setDistortionMaterial(int image_type, UObject* outer, FPostProcessSettings& obj);
-    static void updateCameraPostProcessingSetting(FPostProcessSettings& obj, const CaptureSetting& setting);   
-
+    static void updateCameraPostProcessingSetting(FPostProcessSettings& obj, const CaptureSetting& setting);
     //CinemAirSim
     static void updateCameraSetting(UCineCameraComponent* camera, const CaptureSetting& setting, const NedTransform& ned_transform);
 };
