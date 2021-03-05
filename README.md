@@ -70,15 +70,16 @@ All technical details are described in the corresponding paper: [CinemAirSim: A 
 
 This work can be cited as:
 ```
-@misc{pueyo2020cinemairsim,
-    title={CinemAirSim: A Camera-Realistic Robotics Simulator for Cinematographic Purposes},
-    author={Pablo Pueyo and Eric Cristofalo and Eduardo Montijano and Mac Schwager},
-    year={2020},
-    eprint={2003.07664},
-    archivePrefix={arXiv},
-    primaryClass={cs.RO}
+@article{pueyo2020cinemairsim,
+  title={CinemAirSim: A Camera-Realistic Robotics Simulator for Cinematographic Purposes},
+  author={Pueyo, Pablo and Cristofalo, Eric and Montijano, Eduardo and Schwager, Mac},
+  journal={2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  pages={1186--1191},
+  year={2020}
 }
 ```
+from the IROS 2020 conference paper.
+
 ### Demo
 
 A demo shell is provided to test the new functionalities of CinemAirSim. 
