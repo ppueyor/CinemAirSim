@@ -29,8 +29,8 @@ The c++ code is available in https://github.com/ppueyor/CinemAirSim/tree/master/
 
 ## Available functionalities
 Additionally to the available API functionalities from AirSim, that can be found in these links:
-https://microsoft.github.io/AirSim/docs/apis/
-https://microsoft.github.io/AirSim/docs/apis_cpp/
+https://microsoft.github.io/AirSim/apis/
+https://microsoft.github.io/AirSim/apis_cpp/
 
 This plugin adds the next options to the base API (the vehicle_name param indicates the name of drone the user wants to work with, specified in the file settings.md from AirSim - https://github.com/microsoft/AirSim/blob/master/docs/settings.md):
  *  ##### std::vector<std::string>  simGetPresetLensSettings(const std::string& vehicle_name = "");
