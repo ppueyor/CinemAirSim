@@ -10,6 +10,7 @@
 #include "NedTransform.h"
 #include "common/EarthUtils.hpp"
 
+#include "Materials/MaterialParameterCollectionInstance.h"
 #include "DrawDebugHelpers.h"
 
 PawnSimApi::PawnSimApi(const Params& params)
@@ -508,6 +509,29 @@ void PawnSimApi::setCameraFoV(const std::string& camera_name, float fov_degrees)
     }, true);
 }
 
+void PawnSimApi::setDistortionParam(const std::string& camera_name, const std::string& param_name, float value)
+{
+    UAirBlueprintLib::RunCommandOnGameThread([this, camera_name, param_name, value]() {
+        APIPCamera* camera = getCamera(camera_name);
+        camera->distortion_param_instance_->SetScalarParameterValue(FName(param_name.c_str()), value);
+    }, true);
+}
+
+std::vector<float> PawnSimApi::getDistortionParams(const std::string& camera_name)
+{
+    std::vector<float> param_values(5, 0.0);
+    UAirBlueprintLib::RunCommandOnGameThread([this, camera_name, &param_values]() {
+        APIPCamera* camera = getCamera(camera_name);
+        camera->distortion_param_instance_->GetScalarParameterValue(FName(TEXT("K1")), param_values[0]);
+        camera->distortion_param_instance_->GetScalarParameterValue(FName(TEXT("K2")), param_values[1]);
+        camera->distortion_param_instance_->GetScalarParameterValue(FName(TEXT("K3")), param_values[2]);
+        camera->distortion_param_instance_->GetScalarParameterValue(FName(TEXT("P1")), param_values[3]);
+        camera->distortion_param_instance_->GetScalarParameterValue(FName(TEXT("P2")), param_values[4]);
+    }, true);
+
+    return param_values;
+}
+
 //parameters in NED frame
 PawnSimApi::Pose PawnSimApi::getPose() const
 {
@@ -636,34 +660,20 @@ msr::airlib::Environment* PawnSimApi::getEnvironment()
 std::string PawnSimApi::getRecordFileLine(bool is_header_line) const
 {
     if (is_header_line) {
-        return "TimeStamp\tPOS_X\tPOS_Y\tPOS_Z\tQ_W\tQ_X\tQ_Y\tQ_Z\t";
+        return "VehicleName\tTimeStamp\tPOS_X\tPOS_Y\tPOS_Z\tQ_W\tQ_X\tQ_Y\tQ_Z\t";
     }
 
-    const Kinematics::State* kinematics = getGroundTruthKinematics();
-    uint64_t timestamp_millis = static_cast<uint64_t>(msr::airlib::ClockFactory::get()->nowNanos() / 1.0E6);
+    const auto* kinematics = getGroundTruthKinematics();
+    const uint64_t timestamp_millis = static_cast<uint64_t>(clock()->nowNanos() / 1.0E6);
 
-    //TODO: because this bug we are using alternative code with stringstream
-    //https://answers.unrealengine.com/questions/664905/unreal-crashes-on-two-lines-of-extremely-simple-st.html
+    std::ostringstream ss;
+    ss << getVehicleName() << "\t";
+    ss << timestamp_millis << "\t";
+    ss << kinematics->pose.position.x() << "\t" << kinematics->pose.position.y() << "\t" << kinematics->pose.position.z() << "\t";
+    ss << kinematics->pose.orientation.w() << "\t" << kinematics->pose.orientation.x() << "\t"
+        << kinematics->pose.orientation.y() << "\t" << kinematics->pose.orientation.z() << "\t";
 
-    std::string line;
-    line.append(std::to_string(timestamp_millis)).append("\t")
-        .append(std::to_string(kinematics->pose.position.x())).append("\t")
-        .append(std::to_string(kinematics->pose.position.y())).append("\t")
-        .append(std::to_string(kinematics->pose.position.z())).append("\t")
-        .append(std::to_string(kinematics->pose.orientation.w())).append("\t")
-        .append(std::to_string(kinematics->pose.orientation.x())).append("\t")
-        .append(std::to_string(kinematics->pose.orientation.y())).append("\t")
-        .append(std::to_string(kinematics->pose.orientation.z())).append("\t")
-        ;
-
-    return line;
-
-    //std::stringstream ss;
-    //ss << timestamp_millis << "\t";
-    //ss << kinematics.pose.position.x() << "\t" << kinematics.pose.position.y() << "\t" << kinematics.pose.position.z() << "\t";
-    //ss << kinematics.pose.orientation.w() << "\t" << kinematics.pose.orientation.x() << "\t" << kinematics.pose.orientation.y() << "\t" << kinematics.pose.orientation.z() << "\t";
-    //ss << "\n";
-    //return ss.str();
+    return ss.str();
 }
 
 msr::airlib::VehicleApiBase* PawnSimApi::getVehicleApiBase() const
