@@ -104,10 +104,6 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
         getWorldSimApi()->continueForTime(seconds); 
     });
 
-    pimpl_->server.bind("simContinueForFrames", [&](uint32_t frames) -> void { 
-        getWorldSimApi()->continueForFrames(frames); 
-    });
-
     pimpl_->server.bind("simSetTimeOfDay", [&](bool is_enabled, const string& start_datetime, bool is_start_datetime_dst, 
         float celestial_clock_speed, float update_interval_secs, bool move_sun) -> void {
         getWorldSimApi()->setTimeOfDay(is_enabled, start_datetime, is_start_datetime_dst, 
@@ -134,10 +130,6 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
         return getVehicleApi(vehicle_name)->armDisarm(arm);
     });
 
-    pimpl_->server.bind("simRunConsoleCommand", [&](const std::string& command) -> bool {
-        return getWorldSimApi()->runConsoleCommand(command);
-    });
-
     pimpl_->server.bind("simGetImages", [&](const std::vector<RpcLibAdapatorsBase::ImageRequest>& request_adapter, const std::string& vehicle_name) -> 
         vector<RpcLibAdapatorsBase::ImageResponse> {
             const auto& response = getVehicleSimApi(vehicle_name)->getImages(RpcLibAdapatorsBase::ImageRequest::to(request_adapter));
@@ -145,10 +137,16 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
     });
 
     pimpl_->server.bind("simGetImage", [&](const std::string& camera_name, ImageCaptureBase::ImageType type, const std::string& vehicle_name) -> vector<uint8_t> {
-        return getVehicleSimApi(vehicle_name)->getImage(camera_name, type);
+        auto result = getVehicleSimApi(vehicle_name)->getImage(camera_name, type);
+        if (result.size() == 0) {
+            // rpclib has a bug with serializing empty vectors, so we return a 1 byte vector instead.
+            result.push_back(0);
+        }
+        return result;
     });
 
-    //CinemAirSim methods
+
+    //CinemAirSim
     pimpl_->server.bind("simGetPresetLensSettings", [&](const std::string& vehicle_name) -> vector<string> {
         auto result = getVehicleSimApi(vehicle_name)->getPresetLensSettings();
         if (result.size() == 0) {
@@ -248,6 +246,11 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
     });
 
     pimpl_->server.
+        bind("simGetLidarSegmentation", [&](const std::string& lidar_name, const std::string& vehicle_name) -> std::vector<int> {
+        return getVehicleApi(vehicle_name)->getLidarSegmentation(lidar_name);
+    });
+
+    pimpl_->server.
         bind("simSetSegmentationObjectID", [&](const std::string& mesh_name, int object_id, bool is_name_regex) -> bool {
         return getWorldSimApi()->setSegmentationObjectID(mesh_name, object_id, is_name_regex);
     });
@@ -315,14 +318,6 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
     pimpl_->server.bind("simGetCameraInfo", [&](const std::string& camera_name, const std::string& vehicle_name) -> RpcLibAdapatorsBase::CameraInfo {
         const auto& camera_info = getVehicleSimApi(vehicle_name)->getCameraInfo(camera_name);
         return RpcLibAdapatorsBase::CameraInfo(camera_info);
-    });
-
-    pimpl_->server.bind("simSetDistortionParam", [&](const std::string& camera_name, const std::string& param_name, float value, const std::string& vehicle_name) -> void {
-        getVehicleSimApi(vehicle_name)->setDistortionParam(camera_name, param_name, value);
-    });
-
-    pimpl_->server.bind("simGetDistortionParams", [&](const std::string& camera_name, const std::string& vehicle_name) -> std::vector<float> {
-        return getVehicleSimApi(vehicle_name)->getDistortionParams(camera_name);
     });
 
     pimpl_->server.bind("simSetCameraPose", [&](const std::string& camera_name, const RpcLibAdapatorsBase::Pose& pose, 
@@ -431,9 +426,6 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
         const Environment::State& result = (*getVehicleSimApi(vehicle_name)->getGroundTruthEnvironment()).getState();
         return RpcLibAdapatorsBase::EnvironmentState(result);
     });
-    pimpl_->server.bind("simCreateVoxelGrid", [&](const RpcLibAdapatorsBase::Vector3r& position, const int& x, const int& y, const int& z, const float& res, const std::string& output_file) -> bool {
-        return getWorldSimApi()->createVoxelGrid(position.to(), x, y, z, res, output_file);
-    });
 
     pimpl_->server.bind("cancelLastTask", [&](const std::string& vehicle_name) -> void {
         getVehicleApi(vehicle_name)->cancelLastTask();
@@ -453,10 +445,6 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
 
     pimpl_->server.bind("isRecording", [&]() -> bool {
         return getWorldSimApi()->isRecording();
-    });
-
-    pimpl_->server.bind("simSetWind", [&](const RpcLibAdapatorsBase::Vector3r& wind) -> void {
-        getWorldSimApi()->setWind(wind.to());
     });
 
     //if we don't suppress then server will bomb out for exceptions raised by any method

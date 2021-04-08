@@ -189,6 +189,11 @@ msr::airlib::DistanceSensorData RpcLibClientBase::getDistanceSensorData(const st
     return pimpl_->client.call("getDistanceSensorData", distance_sensor_name, vehicle_name).as<RpcLibAdapatorsBase::DistanceSensorData>().to();
 }
 
+vector<int> RpcLibClientBase::simGetLidarSegmentation(const std::string& lidar_name, const std::string& vehicle_name) const
+{
+    return pimpl_->client.call("simGetLidarSegmentation", lidar_name, vehicle_name).as<vector<int>>();
+}
+
 bool RpcLibClientBase::simSetSegmentationObjectID(const std::string& mesh_name, int object_id, bool is_name_regex)
 {
     return pimpl_->client.call("simSetSegmentationObjectID", mesh_name, object_id, is_name_regex).as<bool>();
@@ -236,7 +241,6 @@ vector<uint8_t> RpcLibClientBase::simGetImage(const std::string& camera_name, Im
     }
     return result;
 }
-
 
 //CinemAirSim
 std::vector<std::string> RpcLibClientBase::simGetPresetLensSettings(const std::string &vehicle_name)
@@ -422,11 +426,6 @@ void RpcLibClientBase::simContinueForTime(double seconds)
     pimpl_->client.call("simContinueForTime", seconds);
 }
 
-void RpcLibClientBase::simContinueForFrames(uint32_t frames)
-{
-    pimpl_->client.call("simContinueForFrames", frames);
-}
-
 void RpcLibClientBase::simEnableWeather(bool enable)
 {
     pimpl_->client.call("simEnableWeather", enable);
@@ -488,26 +487,9 @@ void RpcLibClientBase::simSetCameraPose(const std::string& camera_name, const Po
     pimpl_->client.call("simSetCameraPose", camera_name, RpcLibAdapatorsBase::Pose(pose), vehicle_name);
 }
 
-void RpcLibClientBase::simSetCameraOrientation(const std::string& camera_name, const Quaternionr& orientation, const std::string& vehicle_name)
-{
-    std::cout << "`simSetCameraOrientation` API has been upgraded to `simSetCameraPose`. Please update your code." << std::endl;
-    Pose pose{Vector3r::Zero(), orientation};
-    RpcLibClientBase::simSetCameraPose(camera_name, pose, vehicle_name);
-}
-
 void RpcLibClientBase::simSetCameraFov(const std::string& camera_name, float fov_degrees, const std::string& vehicle_name)
 {
     pimpl_->client.call("simSetCameraFov", camera_name, fov_degrees, vehicle_name);
-}
-
-void RpcLibClientBase::simSetDistortionParam(const std::string& camera_name, const std::string& param_name, float value, const std::string& vehicle_name)
-{
-    pimpl_->client.call("simSetDistortionParam", camera_name, param_name, value, vehicle_name);
-}
-
-std::vector<float> RpcLibClientBase::simGetDistortionParams(const std::string& camera_name, const std::string& vehicle_name)
-{
-    return pimpl_->client.call("simGetDistortionParams", camera_name, vehicle_name).as<std::vector<float>>();
 }
 
 msr::airlib::Kinematics::State RpcLibClientBase::simGetGroundTruthKinematics(const std::string& vehicle_name) const
@@ -518,20 +500,10 @@ msr::airlib::Environment::State RpcLibClientBase::simGetGroundTruthEnvironment(c
 {
     return pimpl_->client.call("simGetGroundTruthEnvironment", vehicle_name).as<RpcLibAdapatorsBase::EnvironmentState>().to();;
 }
-bool RpcLibClientBase::simCreateVoxelGrid(const msr::airlib::Vector3r& position, const int& x, const int& y, const int& z, const float& res, const std::string& output_file)
-{
-    return pimpl_->client.call("simCreateVoxelGrid", RpcLibAdapatorsBase::Vector3r(position), x, y, z, res, output_file).as<bool>();
-}
-
 
 void RpcLibClientBase::cancelLastTask(const std::string& vehicle_name)
 {
     pimpl_->client.call("cancelLastTask", vehicle_name);
-}
-
-bool RpcLibClientBase::simRunConsoleCommand(const std::string& command)
-{
-    return pimpl_->client.call("simRunConsoleCommand", command).as<bool>();
 }
 
 //return value of last task. It should be true if task completed without
@@ -559,12 +531,6 @@ void RpcLibClientBase::stopRecording()
 bool RpcLibClientBase::isRecording()
 {
     return pimpl_->client.call("isRecording").as<bool>();
-}
-
-void RpcLibClientBase::simSetWind(const Vector3r& wind) const
-{
-    RpcLibAdapatorsBase::Vector3r conv_wind(wind);
-    pimpl_->client.call("simSetWind", conv_wind);
 }
 
 void* RpcLibClientBase::getClient()
