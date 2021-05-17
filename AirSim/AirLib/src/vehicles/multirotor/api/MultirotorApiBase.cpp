@@ -311,7 +311,7 @@ bool MultirotorApiBase::moveOnPath(const vector<Vector3r>& path, float velocity,
     float goal_dist = 0;
 
     //until we are at the end of the path (last seg is always zero size)
-    while (!waiter.isTimeout() && (next_path_loc.seg_index < path_segs.size()-1 || goal_dist > 0)
+    while (!waiter.isTimeout() && !waiter.isComplete() && (next_path_loc.seg_index < path_segs.size() || goal_dist > 0)
         ) { //current position is approximately at the last end point
 
         float seg_velocity = path_segs.at(next_path_loc.seg_index).seg_velocity;
@@ -711,7 +711,7 @@ void MultirotorApiBase::moveToPathPosition(const Vector3r& dest, float velocity,
 
     //find velocity vector
     Vector3r velocity_vect;
-    if (cur_dest_norm < getDistanceAccuracy())  //our dest is approximately same as current
+    if (cur_dest_norm < 0.01)  //our dest is approximately same as current
         velocity_vect = Vector3r::Zero();
     else if (cur_dest_norm >= expected_dist) {
         velocity_vect = (cur_dest / cur_dest_norm) * velocity;
@@ -727,7 +727,7 @@ void MultirotorApiBase::moveToPathPosition(const Vector3r& dest, float velocity,
     //send commands
     //try to maintain altitude if path was in XY plan only, velocity based control is not as good
     if (std::abs(cur.z() - dest.z()) <= getDistanceAccuracy()) //for paths in XY plan current code leaves z untouched, so we can compare with strict equality
-        moveByVelocityInternal(velocity_vect.x(), velocity_vect.y(), 0, yaw_mode);
+	moveByVelocityZInternal(velocity_vect.x(), velocity_vect.y(), dest.z(), yaw_mode);
     else
         moveByVelocityInternal(velocity_vect.x(), velocity_vect.y(), velocity_vect.z(), yaw_mode);
 }
