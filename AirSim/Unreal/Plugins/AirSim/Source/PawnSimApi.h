@@ -89,14 +89,14 @@ public: //implementation of VehicleSimApiBase
     virtual float getFocalLength() override;
     virtual void setFocalLength(float focal_length) override;
     virtual void enableManualFocus(bool enable) override;
-    virtual  float getFocusDistance() override;
+    virtual float getFocusDistance() override;
     virtual void setFocusDistance(float focus_distance) override;
-    virtual  float getFocusAperture() override;
+    virtual float getFocusAperture() override;
     virtual void setFocusAperture(float focus_aperture) override;
     virtual void enableFocusPlane(bool enable) override;
     virtual std::string getCurrentFieldOfView() override;
     //end CinemAirSim
-    
+
     virtual Pose getPose() const override;
     virtual void setPose(const Pose& pose, bool ignore_collision) override;
     virtual msr::airlib::CameraInfo getCameraInfo(const std::string& camera_name) const override;
@@ -142,8 +142,8 @@ public: //Unreal specific methods
     APIPCamera* getCamera(const std::string& camera_name);
     int getCameraCount();
 
-    virtual bool testLineOfSightToPoint(GeoPoint& point) const;
-    virtual bool testLineOfSightBetweenPoints(GeoPoint& point1, GeoPoint& point2) const;
+    virtual bool testLineOfSightToPoint(const msr::airlib::GeoPoint& point) const;
+    virtual bool testLineOfSightBetweenPoints(const msr::airlib::GeoPoint& point1, const msr::airlib::GeoPoint& point2) const;
     virtual void getWorldExtents(msr::airlib::GeoPoint& min, msr::airlib::GeoPoint& max) const;
 
     //if enabled, this would show some flares

@@ -152,8 +152,8 @@ namespace airlib
         pimpl_->server.bind("simGetImage", [&](const std::string& camera_name, ImageCaptureBase::ImageType type, const std::string& vehicle_name) -> vector<uint8_t> {
             return getVehicleSimApi(vehicle_name)->getImage(camera_name, type);
         });
-
-        //CinemAirSim
+        
+         //CinemAirSim
         pimpl_->server.bind("simGetPresetLensSettings", [&](const std::string& vehicle_name) -> vector<string> {
             auto result = getVehicleSimApi(vehicle_name)->getPresetLensSettings();
             if (result.size() == 0) {
@@ -233,17 +233,12 @@ namespace airlib
         });
         //end CinemAirSim
 
-        pimpl_->server.bind("simTestLineOfSightToPoint", [&](double lat, double lon, float alt, const std::string& vehicle_name) -> bool {
-            GeoPoint point(lat, lon, alt);
-
-            return getVehicleSimApi(vehicle_name)->testLineOfSightToPoint(point);
+        pimpl_->server.bind("simTestLineOfSightToPoint", [&](const RpcLibAdaptorsBase::GeoPoint& point, const std::string& vehicle_name) -> bool {
+            return getVehicleSimApi(vehicle_name)->testLineOfSightToPoint(point.to());
         });
 
-        pimpl_->server.bind("simTestLineOfSightBetweenPoints", [&](double lat1, double lon1, float alt1, double lat2, double lon2, float alt2) -> bool {
-            GeoPoint point1(lat1, lon1, alt1);
-            GeoPoint point2(lat2, lon2, alt2);
-
-            return getVehicleSimApi("")->testLineOfSightBetweenPoints(point1, point2);
+        pimpl_->server.bind("simTestLineOfSightBetweenPoints", [&](const RpcLibAdaptorsBase::GeoPoint& point1, const RpcLibAdaptorsBase::GeoPoint& point2) -> bool {
+            return getVehicleSimApi("")->testLineOfSightBetweenPoints(point1.to(), point2.to());
         });
 
         pimpl_->server.bind("simGetWorldExtents", [&]() -> vector<RpcLibAdaptorsBase::GeoPoint> {
