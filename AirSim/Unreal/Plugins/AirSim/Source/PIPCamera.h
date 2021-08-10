@@ -9,12 +9,11 @@
 #include "common/common_utils/Utils.hpp"
 #include "common/AirSimSettings.hpp"
 #include "NedTransform.h"
+#include "DetectionComponent.h"
 
 //CinemAirSim
 #include <CineCameraActor.h>
 #include <CineCameraComponent.h>
-
-#include "DetectionComponent.h"
 
 #include "Materials/MaterialParameterCollection.h"
 #include "Materials/MaterialParameterCollectionInstance.h"
@@ -68,11 +67,14 @@ public:
 
     void setCameraTypeEnabled(ImageType type, bool enabled);
     bool getCameraTypeEnabled(ImageType type) const;
-    void setupCameraFromSettings(const APIPCamera::CameraSetting& camera_setting, const NedTransform& ned_transform);
-    void setCameraPose(const FTransform& pose);
+    void setupCameraFromSettings(const CameraSetting& camera_setting, const NedTransform& ned_transform);
+    void setCameraPose(const msr::airlib::Pose& relative_pose);
     void setCameraFoV(float fov_degrees);
+    msr::airlib::CameraInfo getCameraInfo() const;
+    std::vector<float> getDistortionParams() const;
+    void setDistortionParam(const std::string& param_name, float value);
 
-    msr::airlib::ProjectionMatrix getProjectionMatrix(const APIPCamera::ImageType image_type) const;
+    msr::airlib::ProjectionMatrix getProjectionMatrix(const ImageType image_type) const;
 
     USceneCaptureComponent2D* getCaptureComponent(const ImageType type, bool if_active);
     UTextureRenderTarget2D* getRenderTarget(const ImageType type, bool if_active);
@@ -80,12 +82,12 @@ public:
 
     msr::airlib::Pose getPose() const;
 
+private: //members
     UPROPERTY()
     UMaterialParameterCollection* distortion_param_collection_;
     UPROPERTY()
     UMaterialParameterCollectionInstance* distortion_param_instance_;
 
-private: //members
     UPROPERTY()
     TArray<USceneCaptureComponent2D*> captures_;
     UPROPERTY()
@@ -128,7 +130,6 @@ private: //methods
     void setNoiseMaterial(int image_type, UObject* outer, FPostProcessSettings& obj, const NoiseSetting& settings);
     void setDistortionMaterial(int image_type, UObject* outer, FPostProcessSettings& obj);
     static void updateCameraPostProcessingSetting(FPostProcessSettings& obj, const CaptureSetting& setting);
-
     //CinemAirSim
     static void updateCameraSetting(UCineCameraComponent* camera, const CaptureSetting& setting, const NedTransform& ned_transform);
 };
