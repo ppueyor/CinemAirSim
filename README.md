@@ -100,7 +100,7 @@ To test the demo, follow the next steps:
 		mkdir build
 		cd build
 		cmake ..
-		cmake --build .
+		cmake --build ..
 	```
 Now, the program is compiled. 
 
