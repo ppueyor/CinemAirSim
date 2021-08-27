@@ -60,9 +60,10 @@ public:
     void setFocusAperture(float focus_aperture);
     void enableFocusPlane(bool enable);
     std::string getCurrentFieldOfView();
+    void setFocusAndPose(float focus_distance, float focal_length, float focus_aperture, const msr::airlib::Pose& relative_pose);
 
-    void CopyCameraSettingsToAllSceneCapture(UCameraComponent* camera_);
-    void CopyCameraSettingsToSceneCapture(UCameraComponent* Src, USceneCaptureComponent2D* Dst);
+    void CopyCameraSettingsToAllSceneCapture(UCameraComponent* camera);
+    void CopyCameraSettingsToSceneCapture(UCameraComponent* src, USceneCaptureComponent2D* dst);
     //end CinemAirSim methods
 
     void setCameraTypeEnabled(ImageType type, bool enabled);

@@ -108,6 +108,8 @@ public:
     virtual void setFocusAperture(float focus_aperture, const CameraDetails& camera_details) override;
     virtual void enableFocusPlane(bool enable, const CameraDetails& camera_details) override;
     virtual std::string getCurrentFieldOfView(const CameraDetails& camera_details) override;
+    virtual void setFocusAndPose(float focus_distance, float focal_length, float focus_aperture, const msr::airlib::Pose& relative_pose, const CameraDetails& camera_details) override;
+
     //end CinemAirSim
 
     virtual void addDetectionFilterMeshName(ImageCaptureBase::ImageType image_type, const std::string& mesh_name, const CameraDetails& camera_details) override;

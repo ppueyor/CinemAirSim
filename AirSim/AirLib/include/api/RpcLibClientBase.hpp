@@ -128,6 +128,9 @@ namespace airlib
         void simSetFocusAperture(const float focus_aperture, const std::string& camera_name = "", const std::string& vehicle_name = "", bool external = false);
         void simEnableFocusPlane(const bool enable, const std::string& camera_name, const std::string& vehicle_name = "", bool external = false);
         std::string simGetCurrentFieldOfView(const std::string& camera_name, const std::string& vehicle_name = "", bool external = false);
+        void simSetFocusAndPose(const float focus_distance, const float focal_length, const float focus_aperture,
+                                const Pose& pose, const std::string& camera_name = "", const std::string& vehicle_name = "", bool external = false);
+
         //end CinemAirSim
         bool simTestLineOfSightToPoint(const msr::airlib::GeoPoint& point, const std::string& vehicle_name = "");
         bool simTestLineOfSightBetweenPoints(const msr::airlib::GeoPoint& point1, const msr::airlib::GeoPoint& point2);

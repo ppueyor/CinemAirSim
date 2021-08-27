@@ -886,6 +886,12 @@ std::string WorldSimApi::getCurrentFieldOfView(const CameraDetails& camera_detai
 {
     return simmode_->getCamera(camera_details)->getCurrentFieldOfView();
 }
+
+void WorldSimApi::setFocusAndPose(float focus_distance, float focal_length, float focus_aperture, const msr::airlib::Pose& relative_pose, const CameraDetails& camera_details)
+{
+    return simmode_->getCamera(camera_details)->setFocusAndPose(focus_distance, focal_length, focus_aperture, relative_pose);
+}
+
 //End CinemAirSim
 
 void WorldSimApi::addDetectionFilterMeshName(ImageCaptureBase::ImageType image_type, const std::string& mesh_name, const CameraDetails& camera_details)

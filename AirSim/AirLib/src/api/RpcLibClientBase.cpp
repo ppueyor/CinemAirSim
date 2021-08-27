@@ -369,6 +369,12 @@ __pragma(warning(disable : 4239))
             std::string result = pimpl_->client.call("simGetCurrentFieldOfView", camera_name, vehicle_name, external).as<std::string>();
             return result;
         }
+
+        void RpcLibClientBase::simSetFocusAndPose(const float focus_distance, const float focal_length, const float focus_aperture,
+                                                  const Pose& pose, const std::string& camera_name, const std::string& vehicle_name, bool external)
+        {
+            pimpl_->client.call("simSetFocusAndPose", focus_distance, focal_length, focus_aperture, RpcLibAdaptorsBase::Pose(pose), camera_name, vehicle_name, external);
+        }
         //End CinemAirSim
 
         // Minor TODO: consider msgpack magic for GeoPoint, so we can have one arg instead of three

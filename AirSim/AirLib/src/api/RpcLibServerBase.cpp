@@ -231,6 +231,11 @@ namespace airlib
             auto result = getWorldSimApi()->getCurrentFieldOfView(CameraDetails(camera_name, vehicle_name, external));
             return result;
         });
+
+        pimpl_->server.bind("simSetFocusAndPose", [&](const float focus_distance, const float focal_length, const float focus_aperture, const RpcLibAdaptorsBase::Pose& pose, const std::string& camera_name, const std::string& vehicle_name, bool external) -> void {
+            getWorldSimApi()->setFocusAndPose(focus_distance, focal_length, focus_aperture, pose.to(), CameraDetails(camera_name, vehicle_name, external));
+        });
+
         //end CinemAirSim
 
         pimpl_->server.bind("simTestLineOfSightToPoint", [&](const RpcLibAdaptorsBase::GeoPoint& point, const std::string& vehicle_name) -> bool {
