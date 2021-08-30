@@ -1,0 +1,32 @@
+Edit file LevelTick.cpp method:
+
+void UWorld::ClearActorComponentEndOfFrameUpdate(UActorComponent* Component)
+{
+	check(!bPostTickComponentUpdate); // can't call this while we are doing the updates
+
+	const uint32 CurrentState = Component->GetMarkedForEndOfFrameUpdateState();
+
+	if (CurrentState == EComponentMarkedForEndOfFrameUpdateState::Marked)
+	{
+		const int32 ArrayIndex = FMarkComponentEndOfFrameUpdateState::GetArrayIndex(Component);
+		check(ComponentsThatNeedEndOfFrameUpdate.IsValidIndex(ArrayIndex));
+		check(ComponentsThatNeedEndOfFrameUpdate[ArrayIndex] == Component);
+		ComponentsThatNeedEndOfFrameUpdate[ArrayIndex] = nullptr;
+	}
+	else if (CurrentState == EComponentMarkedForEndOfFrameUpdateState::MarkedForGameThread)
+	{
+		const int32 ArrayIndex = FMarkComponentEndOfFrameUpdateState::GetArrayIndex(Component);
+		//check(ComponentsThatNeedEndOfFrameUpdate_OnGameThread.IsValidIndex(ArrayIndex));
+		//check(ComponentsThatNeedEndOfFrameUpdate_OnGameThread[ArrayIndex] == Component);
+		//ComponentsThatNeedEndOfFrameUpdate_OnGameThread[ArrayIndex] = nullptr;
+	}
+	FMarkComponentEndOfFrameUpdateState::Set(Component, INDEX_NONE, EComponentMarkedForEndOfFrameUpdateState::Unmarked);
+
+	if (Component->GetMarkedForPreEndOfFrameSync())
+	{
+		ComponentsThatNeedPreEndOfFrameSync.Remove(Component);
+		FMarkComponentEndOfFrameUpdateState::ClearMarkedForPreEndOfFrameSync(Component);
+	}
+}
+
+to avoid that the engine freezes when stopping game.
