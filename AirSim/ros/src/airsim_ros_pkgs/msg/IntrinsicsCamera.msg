@@ -1,0 +1,3 @@
+float64 focal_length
+float64 aperture
+float64 focus_distance
